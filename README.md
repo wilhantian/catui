@@ -1,14 +1,14 @@
 # catui
 A very light-weight GUI library for the Löve2D
 
-# What do I want in my GUI library?
+## What do I want in my GUI library?
 + Simple
 + Light-weight
 + Extensible
 + Rich events
 + ~~Multiple layout~~
 
-# License
+## License
     The MIT License (MIT)
 
     Copyright (c) 2016 WilhanTian  田伟汉
