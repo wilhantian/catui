@@ -1,3 +1,13 @@
+---------------------------------------
+-- 为控件派发消息
+---------------------------------------
+local function dispatch(ctrl, name, ...)
+    ctrl.events:dispatch(name, ...)
+end
+
+---------------------------------------
+-- UI管理器
+---------------------------------------
 local UIManager = class("UIManager", {
     hoverCtrl = nil,
     focusCtrl = nil,
@@ -45,27 +55,55 @@ function UIManager:mouseMove(x, y, dx, dy)
 
     -- 派发焦点控件的移动事件
     if self.focusCtrl then
-        self.focusCtrl:mouseMove(x, y, dx, dy)
+        dispatch(self.focusCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
     end
 
-    local hitCtrl = self.rootCtrl:hitTest(x, y)
-
     -- 尝试探测鼠标进入与离开事件
+    local hitCtrl = self.rootCtrl:hitTest(x, y)
     if hitCtrl ~= self.hoverCtrl then
         if self.hoverCtrl then
-            self.hoverCtrl:mouseLeave()
+            dispatch(self.hoverCtrl, UI_MOUSE_LEAVE)
         end
 
         self.hoverCtrl = hitCtrl
 
         if hitCtrl then
-            hitCtrl:mouseEnter()
+            dispatch(hitCtrl, UI_MOUSE_ENTER)
         end
     end
 
     -- 派发悬浮控件的移动事件
     if self.hoverCtrl then
-        self.hoverCtrl:mouseMove(x, y, dx, dy)
+        dispatch(self.hoverCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
+    end
+
+    -- 派发锁定控件的移动事件
+    if self.holdCtrl then
+        dispatch(self.holdCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
+    end
+end
+
+---------------------------------------
+-- 鼠标按下
+---------------------------------------
+function UIManager:mouseDown(x, y, button, isTouch)
+    if not self.rootCtrl then
+        return
+    end
+
+    self.holdCtrl = self.rootCtrl:hitTest(x, y)
+    if self.holdCtrl then
+        dispatch(self.holdCtrl, UI_MOUSE_DOWN, x, y, button, isTouch)
+    end
+end
+
+---------------------------------------
+-- 设置抬起
+---------------------------------------
+function UIManager:mouseUp(x, y, button, isTouch)
+    if self.holdCtrl then
+        dispatch(self.holdCtrl, UI_MOUSE_UP, x, y, button, isTouch)
+        self.holdCtrl = nil
     end
 end
 
@@ -78,13 +116,13 @@ function UIManager:setFocus(ctrl)
     end
 
     if self.focusCtrl then
-        self.focusCtrl:unFocus()
+        dispatch(self.focusCtrl, UI_UN_FOCUS)
     end
 
     self.focusCtrl = ctrl
 
     if self.focusCtrl then
-        self.focusCtrl:focus()
+        dispatch(self.focusCtrl, UI_FOCUS)
     end
 end
 

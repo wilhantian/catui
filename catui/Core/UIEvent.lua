@@ -19,19 +19,25 @@ function UIEvent:dispatch(name, ...)
 
     for i,v in ipairs(hands) do
         if v.callback then
-            v.callback(...)
+            if v.targer then
+                v.callback(v.targer, ...)
+            else
+                v.callback(...)
+            end
         end
     end
 end
 
 ---------------------------------------
 -- 监听事件
+-- 如果设置了targer, 回调函数中第一个参数/self就是targer
+-- 反之, 如果未设置targer, 回调函数中的self为nil, 第一个参是正常的回调参数
 ---------------------------------------
-function UIEvent:on(name, callback)
+function UIEvent:on(name, callback, _targer)
     if not self.handlers[name] then
         self.handlers[name] = {}
     end
-    local handle = {name=name, callback=callback}
+    local handle = {name=name, callback=callback, targer=_targer}
     table.insert(self.handlers[name], handle)
     return handle
 end

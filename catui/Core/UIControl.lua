@@ -47,7 +47,8 @@ end
 ---------------------------------------
 function UIControl:draw()
     local x, y = self:localToGlobal()
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setLineWidth(2)
+    love.graphics.setColor(255, 0, 0, 255)
     love.graphics.rectangle("line", x, y, self.width, self.height)
 
     self.events:dispatch(UI_DRAW)
@@ -68,8 +69,8 @@ function UIControl:hitTest(x, y)
     for i,v in ipairs(self.children) do
         local ctrl = self.children[#self.children - i + 1]
         local hitCtrl = ctrl:hitTest(x, y)
-        if childCtrl then
-            return childCtrl
+        if hitCtrl then
+            return hitCtrl
         end
     end
 
@@ -80,22 +81,26 @@ end
 -- 局部坐标转全局坐标
 ---------------------------------------
 function UIControl:localToGlobal(x, y)
-    local bx, by = 0, 0
+    x = (x or 0) + self.x
+    y = (y or 0) + self.y
+
     if self.parent then
-        bx, by = self.parent:localToGlobal(x or 0, y or 0)
+        x, y = self.parent:localToGlobal(x, y)
     end
-    return bx + self.x, by + self.y
+    return x, y
 end
 
 ---------------------------------------
 -- 全局坐标转局部坐标
 ---------------------------------------
 function UIControl:globalToLocal(x, y)
-  local bx, by = 0, 0
-  if self.parent then
-      bx, by = self.parent:globalToLocal(x or 0, y or 0)
-  end
-  return bx - self.x, by - self.y
+    x = (x or 0) - self.x
+    y = (y or 0) - self.y
+
+    if self.parent then
+        x, y = self.parent:globalToLocal(x, y)
+    end
+    return x, y
 end
 
 ---------------------------------------
