@@ -13,16 +13,14 @@ local UIControl = class("UIControl", {
     visible = true,
     enabled = true,
     childrenEnabled = true,
-
-    -- 自定义参数
-    tag = nil,
-    userData = nil,
+    events = nil
 })
 
 ---------------------------------------
 -- 构造
 ---------------------------------------
 function UIControl:init()
+    self.events = UIEvent:new()
 end
 
 ---------------------------------------
@@ -38,13 +36,7 @@ end
 -- 更新
 ---------------------------------------
 function UIControl:update(dt)
-end
-
----------------------------------------
--- 系统更新 由UIManager调用
----------------------------------------
-function UIControl:doUpdate(dt)
-    self:update(dt)
+    self.events:dispatch(UI_UPDATE, dt)
     for i,v in ipairs(self.children) do
         v:update(dt)
     end
@@ -54,13 +46,11 @@ end
 -- 渲染
 ---------------------------------------
 function UIControl:draw()
-end
+    local x, y = self:localToGlobal()
+    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.rectangle("line", x, y, self.width, self.height)
 
----------------------------------------
--- 系统渲染 由UIManager调用
----------------------------------------
-function UIControl:doDraw()
-    self:draw(dt)
+    self.events:dispatch(UI_DRAW)
     for i,v in ipairs(self.children) do
         v:draw(dt)
     end
@@ -92,7 +82,7 @@ end
 function UIControl:localToGlobal(x, y)
     local bx, by = 0, 0
     if self.parent then
-        bx, by = self.parent:localToGlobal(x, y)
+        bx, by = self.parent:localToGlobal(x or 0, y or 0)
     end
     return bx + self.x, by + self.y
 end
@@ -103,7 +93,7 @@ end
 function UIControl:globalToLocal(x, y)
   local bx, by = 0, 0
   if self.parent then
-      bx, by = self.parent:globalToLocal(x, y)
+      bx, by = self.parent:globalToLocal(x or 0, y or 0)
   end
   return bx - self.x, by - self.y
 end
@@ -113,7 +103,7 @@ end
 ---------------------------------------
 function UIControl:addChild(child, depth)
     child.parent = self
-    table.insert(self.children, child, depth)
+    table.insert(self.children, child)
 end
 
 ---------------------------------------
@@ -121,7 +111,7 @@ end
 ---------------------------------------
 function UIControl:removeChild(child)
     for i,v in ipairs(self.children) do
-        if self.children == child then
+        if v == child then
             table.remove(self.children, i)
             break
         end
@@ -129,55 +119,10 @@ function UIControl:removeChild(child)
 end
 
 ---------------------------------------
--- 鼠标进入
----------------------------------------
-function UIControl:mouseEnter()
-end
-
----------------------------------------
--- 鼠标离开
----------------------------------------
-function UIControl:mouseLeave()
-end
-
----------------------------------------
--- 鼠标移动
--- x, y 为世界坐标
----------------------------------------
-function UIControl:mouseMove(x, y, dx, dy)
-end
-
----------------------------------------
--- 鼠标按下
--- x, y 为世界坐标
----------------------------------------
-function UIControl:mouseDown()
-end
-
----------------------------------------
--- 鼠标抬起
--- x, y 为世界坐标
----------------------------------------
-function UIControl:mouseUp()
-end
-
----------------------------------------
 -- 设置焦点
 ---------------------------------------
 function UIControl:setFocus()
     UIManager:getInstance():setFocus(self)
-end
-
----------------------------------------
--- 控件获得焦点
----------------------------------------
-function UIControl:focus()
-end
-
----------------------------------------
--- 控件失去焦点
----------------------------------------
-function UIControl:unFocus()
 end
 
 return UIControl

@@ -1,6 +1,7 @@
 local UIManager = class("UIManager", {
     hoverCtrl = nil,
     focusCtrl = nil,
+    holdCtrl = nil,
     rootCtrl = nil,
 })
 
@@ -8,23 +9,29 @@ local UIManager = class("UIManager", {
 -- 构造
 ---------------------------------------
 function UIManager:init()
+    local ctrl = UIControl:new()
+    ctrl.x = 0
+    ctrl.y = 0
+    ctrl.width = love.graphics.getWidth()
+    ctrl.height = love.graphics.getHeight()
+    self.rootCtrl = ctrl
 end
 
 ---------------------------------------
 -- UI更新
 ---------------------------------------
-function UIManager:doUpdate(dt)
+function UIManager:update(dt)
     if self.rootCtrl then
-        self.rootCtrl:doUpdate(dt)
+        self.rootCtrl:update(dt)
     end
 end
 
 ---------------------------------------
 -- 渲染
 ---------------------------------------
-function UIManager:doDraw(dt)
+function UIManager:draw(dt)
     if self.rootCtrl then
-        self.rootCtrl:doDraw(dt)
+        self.rootCtrl:draw(dt)
     end
 end
 
@@ -32,7 +39,7 @@ end
 -- 鼠标移动
 ---------------------------------------
 function UIManager:mouseMove(x, y, dx, dy)
-    if not rootCtrl then
+    if not self.rootCtrl then
         return
     end
 
