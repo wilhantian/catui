@@ -46,11 +46,6 @@ end
 -- 渲染
 ---------------------------------------
 function UIControl:draw()
-    local x, y = self:localToGlobal()
-    love.graphics.setLineWidth(2)
-    love.graphics.setColor(255, 0, 0, 255)
-    love.graphics.rectangle("line", x, y, self.width, self.height)
-
     self.events:dispatch(UI_DRAW)
     for i,v in ipairs(self.children) do
         v:draw(dt)

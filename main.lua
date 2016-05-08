@@ -7,29 +7,33 @@ UIControl = require "catui.Core.UIControl"
 UIManager = require "catui.Core.UIManager"
 
 function love.load(arg)
-    mgr = UIManager:new()
+    mgr = UIManager:getInstance()
 
     childA = UIControl:new()
-    childA.x = 50
-    childA.y = 50
-    childA.width = 50
-    childA.height = 50
+    childA:set({x=50, y=50, width=50, height=50})
     mgr.rootCtrl:addChild(childA)
     --------------------------------------
-    childA.events:on(UI_MOUSE_ENTER, function()
-        print("AAA", UI_MOUSE_ENTER)
+    childA.events:on(UI_DRAW, function(self)
+        local x, y = self:localToGlobal()
+        love.graphics.setLineWidth(2)
+        love.graphics.setColor(255, 0, 0, 255)
+        love.graphics.rectangle("line", x, y, self.width, self.height)
+    end, childA)
+    --------------------------------------
+    childA.events:on(UI_FOCUS, function()
+        print("AAA", UI_FOCUS)
     end)
     --------------------------------------
-    childA.events:on(UI_MOUSE_LEAVE, function()
-        print("AAA", UI_MOUSE_LEAVE)
+    childA.events:on(UI_UN_FOCUS, function()
+        print("AAA", UI_UN_FOCUS)
     end)
     --------------------------------------
-    mgr.rootCtrl.events:on(UI_MOUSE_ENTER, function()
-        print("RRR", UI_MOUSE_ENTER)
+    childA.events:on(UI_MOUSE_MOVE, function(x, y, dx, dy)
+        print("AAA", UI_MOUSE_MOVE, x, y)
     end)
     --------------------------------------
-    mgr.rootCtrl.events:on(UI_MOUSE_LEAVE, function()
-        print("RRR", UI_MOUSE_LEAVE)
+    childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
+        print("AAA", UI_DB_CLICK, love.timer.getTime())
     end)
     --------------------------------------
 end

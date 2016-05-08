@@ -5,6 +5,7 @@ UI_MOUSE_ENTER = "mouseEnter"
 UI_MOUSE_LEAVE = "mouseLeave"
 
 UI_CLICK = "click"
+UI_DB_CLICK = "dbClick"
 UI_FOCUS = "focus"
 UI_UN_FOCUS = "unFocus"
 

@@ -13,7 +13,20 @@ local UIManager = class("UIManager", {
     focusCtrl = nil,
     holdCtrl = nil,
     rootCtrl = nil,
+
+    lastClickCtrl = nil,
+    lastClickTime = love.timer.getTime()
 })
+
+---------------------------------------
+-- 获取单利
+---------------------------------------
+function UIManager:getInstance()
+    if not UIManager.instance then
+        UIManager.instance = UIManager:new()
+    end
+    return UIManager.instance
+end
 
 ---------------------------------------
 -- 构造
@@ -53,11 +66,6 @@ function UIManager:mouseMove(x, y, dx, dy)
         return
     end
 
-    -- 派发焦点控件的移动事件
-    if self.focusCtrl then
-        dispatch(self.focusCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
-    end
-
     -- 尝试探测鼠标进入与离开事件
     local hitCtrl = self.rootCtrl:hitTest(x, y)
     if hitCtrl ~= self.hoverCtrl then
@@ -72,15 +80,16 @@ function UIManager:mouseMove(x, y, dx, dy)
         end
     end
 
-    -- 派发悬浮控件的移动事件
-    if self.hoverCtrl then
-        dispatch(self.hoverCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
-    end
-
     -- 派发锁定控件的移动事件
     if self.holdCtrl then
         dispatch(self.holdCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
+    else
+        -- 派发悬浮控件的移动事件
+        if self.hoverCtrl then
+            dispatch(self.hoverCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
+        end
     end
+
 end
 
 ---------------------------------------
@@ -91,10 +100,14 @@ function UIManager:mouseDown(x, y, button, isTouch)
         return
     end
 
-    self.holdCtrl = self.rootCtrl:hitTest(x, y)
-    if self.holdCtrl then
-        dispatch(self.holdCtrl, UI_MOUSE_DOWN, x, y, button, isTouch)
+    -- 鼠标点击
+    local hitCtrl = self.rootCtrl:hitTest(x, y)
+    if hitCtrl then
+        dispatch(hitCtrl, UI_MOUSE_DOWN, x, y, button, isTouch)
+        self.holdCtrl = hitCtrl --设置按下控件
     end
+
+    self:setFocus(hitCtrl)
 end
 
 ---------------------------------------
@@ -102,7 +115,30 @@ end
 ---------------------------------------
 function UIManager:mouseUp(x, y, button, isTouch)
     if self.holdCtrl then
+        -- 派发抬起
         dispatch(self.holdCtrl, UI_MOUSE_UP, x, y, button, isTouch)
+
+        -- 点击事件验证
+        if self.rootCtrl then
+            local hitCtrl = self.rootCtrl:hitTest(x, y)
+            if hitCtrl == self.holdCtrl then
+                -- 检测是否双击
+                if self.lastClickCtrl and self.lastClickCtrl == self.holdCtrl and (love.timer.getTime() - self.lastClickTime) <= 0.4 then
+                    -- 派发双击事件
+                    dispatch(self.holdCtrl, UI_DB_CLICK, self.holdCtrl, x, y)
+
+                    self.lastClickCtrl = nil
+                    self.lastClickTime = 0
+                else
+                    -- 派发点击事件
+                    dispatch(self.holdCtrl, UI_CLICK, self.holdCtrl, x, y)
+
+                    self.lastClickCtrl = self.holdCtrl
+                    self.lastClickTime = love.timer.getTime()
+                end
+            end
+        end
+
         self.holdCtrl = nil
     end
 end
