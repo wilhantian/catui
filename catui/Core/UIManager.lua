@@ -144,6 +144,26 @@ function UIManager:mouseUp(x, y, button, isTouch)
 end
 
 ---------------------------------------
+-- 键盘按下事件
+---------------------------------------
+function UIManager:keyDown(key, scancode, isrepeat)
+    -- 只给发送给当前焦点控件
+    if self.focusCtrl then
+        dispatch(self.focusCtrl, UI_KEY_DOWN, key, scancode, isrepeat)
+    end
+end
+
+---------------------------------------
+-- 键盘抬起事件
+---------------------------------------
+function UIManager:keyUp(key)
+    -- 只给发送给当前焦点控件
+    if self.focusCtrl then
+        dispatch(self.focusCtrl, UI_KEY_UP, key)
+    end
+end
+
+---------------------------------------
 -- 设置焦点
 ---------------------------------------
 function UIManager:setFocus(ctrl)
