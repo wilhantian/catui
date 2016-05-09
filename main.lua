@@ -14,6 +14,7 @@ function love.load(arg)
     childA = UIButton:new()
     childA:set({x=50, y=50, width=50, height=50})
     mgr.rootCtrl:addChild(childA)
+
     --------------------------------------
     childA.events:on(UI_FOCUS, function()
         print("AAA", UI_FOCUS)

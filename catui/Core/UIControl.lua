@@ -13,7 +13,11 @@ local UIControl = class("UIControl", {
     visible = true,
     enabled = true,
     childrenEnabled = true,
-    events = nil
+    events = nil,
+
+    color = nil,
+    stroke = 0,
+    strokeColor = nil,
 })
 
 ---------------------------------------
@@ -46,6 +50,26 @@ end
 -- 渲染
 ---------------------------------------
 function UIControl:draw()
+    local x, y = self:localToGlobal()
+    local width, height = self.width, self.height
+
+    love.graphics.push("all")
+        -- 绘制描边
+        local stroke = self.stroke
+        local strokeColor = self.strokeColor
+        if stroke > 0 and strokeColor then
+            love.graphics.setLineWidth(stroke)
+            love.graphics.setColor(strokeColor[1], strokeColor[2], strokeColor[3], strokeColor[4])
+            love.graphics.rectangle("line", x, y, width, height)
+        end
+        -- 绘制底色
+        local color = self.color
+        if color then
+            love.graphics.setColor(color[1], color[2], color[3], color[4])
+            love.graphics.rectangle("fill", x, y, width, height)
+        end
+    love.graphics.pop()
+
     self.events:dispatch(UI_DRAW)
     for i,v in ipairs(self.children) do
         v:draw(dt)
