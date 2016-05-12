@@ -18,6 +18,7 @@ end
 function UIButton:onDraw()
     local x, y = self:localToGlobal()
 
+    love.graphics.push("all")
     if self.isPressed then
         love.graphics.setLineWidth(2)
         love.graphics.setColor(COLOR_MAIN.r, COLOR_MAIN.g, COLOR_MAIN.b, 255)
@@ -31,6 +32,8 @@ function UIButton:onDraw()
         love.graphics.setColor(COLOR_ADOM.r, COLOR_ADOM.g, COLOR_ADOM.b, 255)
         love.graphics.rectangle("fill", x, y, self.width, self.height)
     end
+    
+    love.graphics.pop()
 end
 
 function UIButton:onMouseEnter()

@@ -1,6 +1,7 @@
 local UIControl = class("UIControl", {
     x = 0,
     y = 0,
+    -- rotation = 0,
     -- anchorX = 0,
     -- anchorY = 0,
     -- scaleX = 1,

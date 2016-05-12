@@ -7,30 +7,38 @@ UIEvent = require "catui.Core.UIEvent"
 UIControl = require "catui.Core.UIControl"
 UIManager = require "catui.Core.UIManager"
 UIButton = require "catui.Control.UIButton"
+UIImage = require "catui.Control.UIImage"
 
 function love.load(arg)
     mgr = UIManager:getInstance()
 
-    childA = UIButton:new()
+    local childA = UIButton:new()
     childA:set({x=50, y=50, width=50, height=50})
     mgr.rootCtrl:addChild(childA)
 
+    local img = UIImage:new("img/gem.png")
+    img.x = 150
+    img.y = 150
+    childA:addChild(img)
+
+    texture = love.graphics.newText(love.graphics.getFont(), "...")
+
     --------------------------------------
     childA.events:on(UI_FOCUS, function()
-        print("AAA", UI_FOCUS)
+        texture = love.graphics.newText(love.graphics.getFont(), UI_FOCUS)
     end)
     --------------------------------------
     childA.events:on(UI_UN_FOCUS, function()
-        print("AAA", UI_UN_FOCUS)
+        texture = love.graphics.newText(love.graphics.getFont(), UI_UN_FOCUS)
     end)
     --------------------------------------
     childA.events:on(UI_MOUSE_MOVE, function(x, y, dx, dy)
-        print("AAA", UI_MOUSE_MOVE, x, y)
+        texture = love.graphics.newText(love.graphics.getFont(), UI_MOUSE_MOVE)
     end)
     --------------------------------------
     childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
-        print("AAA", UI_DB_CLICK, love.timer.getTime())
-        t = tween.new(2, childA, {y=500}, "outBounce")
+        texture = love.graphics.newText(love.graphics.getFont(), UI_DB_CLICK)
+        t = tween.new(2, img, {y=460}, "outBounce")
     end)
     --------------------------------------
 
@@ -43,6 +51,7 @@ end
 
 function love.draw()
     mgr:draw()
+    love.graphics.draw(texture, 100, 100)
 end
 
 function love.mousemoved(x, y, dx, dy)
