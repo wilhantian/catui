@@ -1,12 +1,18 @@
 local UIButton = UIControl:extend("UIButton", {
     isHoved = false,
-    isPressed = false
+    isPressed = false,
+    label = nil
 })
 
 function UIButton:init(drawable)
     UIControl.init(self)
 
+    self.enabled = true
     self.drawable = drawable
+
+    self.label = UILabel:new()
+    self.label:setText("AAA")
+    self:addChild(self.label)
 
     self.events:on(UI_DRAW, self.onDraw, self)
     self.events:on(UI_MOUSE_ENTER, self.onMouseEnter, self)
@@ -20,19 +26,16 @@ function UIButton:onDraw()
 
     love.graphics.push("all")
     if self.isPressed then
-        love.graphics.setLineWidth(2)
-        love.graphics.setColor(COLOR_MAIN.r, COLOR_MAIN.g, COLOR_MAIN.b, 255)
+        love.graphics.setColor(Color4(COLOR_BTN_DOWN))
         love.graphics.rectangle("fill", x, y, self.width, self.height)
     elseif self.isHoved then
-        love.graphics.setLineWidth(2)
-        love.graphics.setColor(COLOR_SUB.r, COLOR_SUB.g, COLOR_SUB.b, 255)
+        love.graphics.setColor(Color4(COLOR_BTN_HOVE))
         love.graphics.rectangle("fill", x, y, self.width, self.height)
     else
-        love.graphics.setLineWidth(2)
-        love.graphics.setColor(COLOR_ADOM.r, COLOR_ADOM.g, COLOR_ADOM.b, 255)
+        love.graphics.setColor(Color4(COLOR_BTN))
         love.graphics.rectangle("fill", x, y, self.width, self.height)
     end
-    
+
     love.graphics.pop()
 end
 

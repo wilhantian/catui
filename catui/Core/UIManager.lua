@@ -9,10 +9,10 @@ end
 -- UI管理器
 ---------------------------------------
 local UIManager = class("UIManager", {
+    rootCtrl = nil, --根节点
     hoverCtrl = nil,
     focusCtrl = nil,
     holdCtrl = nil,
-    rootCtrl = nil,
 
     lastClickCtrl = nil,
     lastClickTime = love.timer.getTime()
@@ -32,12 +32,17 @@ end
 -- 构造
 ---------------------------------------
 function UIManager:init()
-    local ctrl = UIControl:new()
-    ctrl.x = 0
-    ctrl.y = 0
-    ctrl.width = love.graphics.getWidth()
-    ctrl.height = love.graphics.getHeight()
+    -- TODO 此处由用户设置
+    self.rootCtrl = self:createRootCtrl()
+end
+
+---------------------------------------
+-- 创建一个Root控件
+---------------------------------------
+function UIManager:createRootCtrl()
+    local ctrl = UIRoot:new()
     self.rootCtrl = ctrl
+    return ctrl
 end
 
 ---------------------------------------
@@ -89,7 +94,6 @@ function UIManager:mouseMove(x, y, dx, dy)
             dispatch(self.hoverCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
         end
     end
-
 end
 
 ---------------------------------------
@@ -161,6 +165,13 @@ function UIManager:keyUp(key)
     if self.focusCtrl then
         dispatch(self.focusCtrl, UI_KEY_UP, key)
     end
+end
+
+---------------------------------------
+-- 窗口重置大小
+---------------------------------------
+function UIManager:resize(w, h)
+
 end
 
 ---------------------------------------

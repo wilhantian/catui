@@ -1,24 +1,15 @@
 local UIControl = class("UIControl", {
     x = 0,
     y = 0,
-    -- rotation = 0,
-    -- anchorX = 0,
-    -- anchorY = 0,
-    -- scaleX = 1,
-    -- scaleY = 1,
     width = 0,
     height = 0,
     depth = 0,
     children = {},
     parent = nil,
     visible = true,
-    enabled = true,
+    enabled = false,
     childrenEnabled = true,
     events = nil,
-
-    color = nil,
-    stroke = 0,
-    strokeColor = nil,
 })
 
 ---------------------------------------
@@ -51,25 +42,9 @@ end
 -- 渲染
 ---------------------------------------
 function UIControl:draw()
-    local x, y = self:localToGlobal()
-    local width, height = self.width, self.height
-
-    love.graphics.push("all")
-        -- 绘制描边
-        local stroke = self.stroke
-        local strokeColor = self.strokeColor
-        if stroke > 0 and strokeColor then
-            love.graphics.setLineWidth(stroke)
-            love.graphics.setColor(strokeColor[1], strokeColor[2], strokeColor[3], strokeColor[4])
-            love.graphics.rectangle("line", x, y, width, height)
-        end
-        -- 绘制底色
-        local color = self.color
-        if color then
-            love.graphics.setColor(color[1], color[2], color[3], color[4])
-            love.graphics.rectangle("fill", x, y, width, height)
-        end
-    love.graphics.pop()
+    if not self.visible then
+        return
+    end
 
     self.events:dispatch(UI_DRAW)
     for i,v in ipairs(self.children) do
@@ -82,19 +57,26 @@ end
 ---------------------------------------
 function UIControl:hitTest(x, y)
     local globalX, globalY = self:globalToLocal(x, y)
-    if globalX < 0 or globalY < 0 or globalX >= self.width or globalY >= self.height then
+
+    if globalX < 0 or globalY < 0 or globalX >= self.width or globalY >= self.height or not self.visible then
         return nil
     end
 
-    for i,v in ipairs(self.children) do
-        local ctrl = self.children[#self.children - i + 1]
-        local hitCtrl = ctrl:hitTest(x, y)
-        if hitCtrl then
-            return hitCtrl
+    if self.childrenEnabled then --如果子类开启
+        for i,v in ipairs(self.children) do
+            local ctrl = self.children[#self.children - i + 1]
+            local hitCtrl = ctrl:hitTest(x, y)
+            if hitCtrl then
+                return hitCtrl
+            end
         end
     end
 
-    return self
+    if self.enabled then
+        return self
+    else
+        return nil
+    end
 end
 
 ---------------------------------------
@@ -128,7 +110,9 @@ end
 ---------------------------------------
 function UIControl:addChild(child, depth)
     child.parent = self
+    child.depth = depth
     table.insert(self.children, child)
+    self:sortChildren()
 end
 
 ---------------------------------------
@@ -144,10 +128,58 @@ function UIControl:removeChild(child)
 end
 
 ---------------------------------------
+-- 对子控件排序
+---------------------------------------
+function UIControl:sortChildren()
+    table.sort(self.children, function(a, b)
+        return a.depth > b.depth
+    end)
+end
+
+---------------------------------------
 -- 设置焦点
 ---------------------------------------
 function UIControl:setFocus()
     UIManager:getInstance():setFocus(self)
+end
+
+---------------------------------------
+-- 设置坐标
+---------------------------------------
+function UIControl:setPos(x, y)
+    self.x = x
+    self.y = y
+end
+
+---------------------------------------
+-- 获取坐标
+---------------------------------------
+function UIControl:getPos()
+    return self.x, self.y
+end
+
+---------------------------------------
+-- 设置宽度
+---------------------------------------
+function UIControl:setWidth(width)
+    self.width = width
+end
+
+---------------------------------------
+-- 设置高度
+---------------------------------------
+function UIControl:setHeight(height)
+    self.height = height
+end
+
+---------------------------------------
+-- 设置深度
+---------------------------------------
+function UIControl:setDepth(depth)
+    self.depth = depth
+    if self.parent then
+        self.parent:sortChildren()
+    end
 end
 
 return UIControl
