@@ -20,7 +20,8 @@ function love.load(arg)
     mgr = UIManager:getInstance()
 
     local childA = UIButton:new()
-    childA:set({x=50, y=50, width=50, height=50})
+    childA:setPos(50, 50)
+    childA:setSize(76, 50)
     mgr.rootCtrl.coreContainer:addChild(childA)
 
     local img = UIImage:new("img/gem.png")

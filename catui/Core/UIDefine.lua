@@ -14,6 +14,9 @@ UI_KEY_UP = "keyUp"
 
 UI_UPDATE = "update"
 UI_DRAW = "draw"
+UI_MOVE = "move"    -- UI坐标发生改变
+UI_ON_ADD = "onAdd" -- UI被添加到父控件时
+UI_ON_REMOVE = "onRemove" -- UI被移除时
 
 COLOR_BG_NULL = {r=255, g=255, b=255}
 COLOR_BG_NONE = {r=247, g=247, b=249}
