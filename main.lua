@@ -4,6 +4,7 @@ tween = require "catui.libs.tween"
 require "catui.Core.UIDefine"
 
 point = require "catui.Utils.Utils"
+Rect = require "catui.Core.Rect"
 UIEvent = require "catui.Core.UIEvent"
 UIControl = require "catui.Core.UIControl"
 UIRoot = require "catui.Core.UIRoot"
@@ -19,14 +20,14 @@ function love.load(arg)
 
     mgr = UIManager:getInstance()
 
-    local childA = UIButton:new()
-    childA:setPos(50, 50)
-    childA:setSize(76, 50)
+    childA = UIButton:new()
+    childA:setPos(0, 0)
+    childA:setSize(100, 50)
+    childA:setAnchor(0.5, 0.5)
     mgr.rootCtrl.coreContainer:addChild(childA)
 
     local img = UIImage:new("img/gem.png")
-    img.x = 150
-    img.y = 150
+    img:setPos(150, 150)
     childA:addChild(img)
 
     texture = love.graphics.newText(love.graphics.getFont(), "...")

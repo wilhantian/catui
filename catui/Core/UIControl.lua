@@ -13,18 +13,23 @@ local UIControl = class("UIControl", {
     childrenEnabled = true,
     events = nil,
 
+    isNeedValidate = false,
     worldX = 0,
     worldY = 0,
+    boundingBox = nil
 })
 
 --- 构造
 function UIControl:init()
     self.events = UIEvent:new()
+    self.boundingBox = Rect:new()
 end
 
 --- 更新
 function UIControl:update(dt)
+    self:validate()
     self.events:dispatch(UI_UPDATE, dt)
+
     for i,v in ipairs(self.children) do
         v:update(dt)
     end
@@ -42,15 +47,41 @@ function UIControl:draw()
     end
 end
 
---- 验证坐标
-function UIControl:refreshWorldPos()
+--- 需要验证布局
+function UIControl:needValidate()
+    self.isNeedValidate = true
+end
+
+--- 验证布局
+function UIControl:validate()
+    if not self.isNeedValidate then
+        return
+    end
+
     local x, y = self:localToGlobal()
+    local w = self.width * self.anchorX
+    local h = self.height * self.anchorY
+    self.worldX = x - w
+    self.worldY = y - h
+
+    local box = self.boundingBox
+    box.left = self.worldX
+    box.top = self.worldY
+    box.right = self.worldX + self.width
+    box.bottom = self.worldY + self.height
+
+    for i,v in ipairs(self.children) do
+        v:validate()
+    end
+
+    self.isNeedValidate = false
 end
 
 --- 设置锚点
 function UIControl:setAnchor(x, y)
     self.anchorX = x
     self.anchorY = y
+    self:needValidate()
 end
 
 --- 获取锚点
@@ -61,6 +92,7 @@ end
 --- 设置X轴锚点
 function UIControl:setAnchorX(x)
     self.anchorX = x
+    self:needValidate()
 end
 
 --- 获取X轴锚点
@@ -71,6 +103,7 @@ end
 --- 设置Y轴锚点
 function UIControl:setAnchorY(y)
     self.anchorY = y
+    self:needValidate()
 end
 
 --- 获取Y轴锚点
@@ -82,6 +115,7 @@ end
 function UIControl:setPos(x, y)
     self.x = x
     self.y = y
+    self:needValidate()
     self.events:dispatch(UI_MOVE)
 end
 
@@ -90,22 +124,24 @@ function UIControl:getPos()
     return self.x, self.y
 end
 
--- 设置X坐标
+--- 设置X坐标
 function UIControl:setX(x)
     self.x = x
+    self:needValidate()
 end
 
--- 获取X坐标
+--- 获取X坐标
 function UIControl:getX()
     return self.x
 end
 
--- 设置Y坐标
+--- 设置Y坐标
 function UIControl:setY(y)
     self.y = y
+    self:needValidate()
 end
 
--- 获取Y坐标
+--- 获取Y坐标
 function UIControl:getY()
     return self.y
 end
@@ -114,6 +150,7 @@ end
 function UIControl:setSize(width, height)
     self.width = width
     self.height = height
+    self:needValidate()
 end
 
 --- 获取大小
@@ -124,6 +161,7 @@ end
 --- 设置宽度
 function UIControl:setWidth(width)
     self.width = width
+    self:needValidate()
 end
 
 --- 获取宽度
@@ -134,6 +172,7 @@ end
 --- 设置高度
 function UIControl:setHeight(height)
     self.height = height
+    self:needValidate()
 end
 
 --- 获取高度
@@ -141,9 +180,15 @@ function UIControl:getHeight()
     return self.height
 end
 
+--- 获取包围盒
+function UIControl:getBoundingBox()
+    return self.boundingBox
+end
+
 --- 设置父节点
 function UIControl:setParent(parent)
     self.parent = parent
+    self:needValidate()
 end
 
 --- 获取父节点
@@ -175,7 +220,7 @@ end
 function UIControl:hitTest(x, y)
     local globalX, globalY = self:globalToLocal(x, y)
 
-    if globalX < 0 or globalY < 0 or globalX >= self.width or globalY >= self.height or not self.visible then
+    if not self:getBoundingBox():contains(x, y) then
         return nil
     end
 

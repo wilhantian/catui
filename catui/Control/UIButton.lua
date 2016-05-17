@@ -22,18 +22,20 @@ function UIButton:init(drawable)
 end
 
 function UIButton:onDraw()
-    local x, y = self:localToGlobal()
+    local box = self:getBoundingBox()
+    local x, y = box.left, box.top
+    local w, h = box:getWidth(), box:getHeight()
 
     love.graphics.push("all")
     if self.isPressed then
         love.graphics.setColor(Color4(COLOR_BTN_DOWN))
-        love.graphics.rectangle("fill", x, y, self.width, self.height)
+        love.graphics.rectangle("fill", x, y, w, h)
     elseif self.isHoved then
         love.graphics.setColor(Color4(COLOR_BTN_HOVE))
-        love.graphics.rectangle("fill", x, y, self.width, self.height)
+        love.graphics.rectangle("fill", x, y, w, h)
     else
         love.graphics.setColor(Color4(COLOR_BTN))
-        love.graphics.rectangle("fill", x, y, self.width, self.height)
+        love.graphics.rectangle("fill", x, y, w, h)
     end
 
     love.graphics.pop()
