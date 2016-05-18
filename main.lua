@@ -20,15 +20,19 @@ function love.load(arg)
 
     mgr = UIManager:getInstance()
 
-    childA = UIButton:new()
+    childA = UIButton:new("img/gem.png", "img/equip1.png", "img/equip2.png")
     childA:setPos(0, 0)
-    childA:setSize(100, 50)
-    childA:setAnchor(0.5, 0.5)
+    -- childA:setSize(100, 50)
+    childA:setAnchor(0, 0)
     mgr.rootCtrl.coreContainer:addChild(childA)
 
     local img = UIImage:new("img/gem.png")
+    img:setSize(150, 150)
     img:setPos(150, 150)
     childA:addChild(img)
+
+    local label = UILabel:new("AAAA\nHello World", 46)
+    img:addChild(label)
 
     texture = love.graphics.newText(love.graphics.getFont(), "...")
 
@@ -47,13 +51,8 @@ function love.load(arg)
     --------------------------------------
     childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
         texture = love.graphics.newText(love.graphics.getFont(), UI_DB_CLICK)
-        t = tween.new(2, img, {y=460}, "outBounce")
-
-        local x, y  = point.rotate(0, 1, 0, 10, 90)
-        texture = love.graphics.newText(love.graphics.getFont(), "x=".. x .. " y=" .. y)
     end)
     --------------------------------------
-
 
     local panel = UIPanel:new()
     panel.x = 300
@@ -61,12 +60,10 @@ function love.load(arg)
     panel.width = 400
     panel.height = 350
     mgr.rootCtrl.coreContainer:addChild(panel)
-
 end
 
 function love.update(dt)
     mgr:update(dt)
-    if t then t:update(dt) end
 end
 
 function love.draw()

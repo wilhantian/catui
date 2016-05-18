@@ -19,6 +19,18 @@ function Rect:contains(x, y)
     return true
 end
 
+function Rect:getPos()
+    return self.left, self.top
+end
+
+function Rect:getX()
+    return self.left
+end
+
+function Rect:getY()
+    return self.top
+end
+
 function Rect:getSize()
     local w = self.right - self.left
     local h = self.bottom - self.top

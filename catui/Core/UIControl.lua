@@ -12,7 +12,7 @@ local UIControl = class("UIControl", {
     enabled = false,
     childrenEnabled = true,
     events = nil,
-
+    clip = false,
     isNeedValidate = false,
     worldX = 0,
     worldY = 0,
@@ -41,10 +41,45 @@ function UIControl:draw()
         return
     end
 
+    self:clipBegin()
+
     self.events:dispatch(UI_DRAW)
     for i,v in ipairs(self.children) do
         v:draw(dt)
     end
+
+    self:clipEnd()
+end
+
+--- 设置裁剪
+function UIControl:setClip(isClip)
+    self.clip = isClip
+end
+
+--- 是否裁剪
+function UIControl:isClip()
+    return self.clip
+end
+
+--- 开始裁剪
+function UIControl:clipBegin()
+    if self.clip then
+        local box = self:getBoundingBox()
+		local x, y = box.left, box.top
+        local w, h = box:getWidth(), box:getHeight()
+	    local stencilfunc = function()
+	        love.graphics.rectangle("fill", x, y, w, h)
+	    end
+	    love.graphics.stencil(stencilfunc)
+	    love.graphics.setStencilTest("greater", 0)
+	end
+end
+
+--- 裁剪结束
+function UIControl:clipEnd()
+    if self.clip then
+		love.graphics.setStencilTest()
+	end
 end
 
 --- 需要验证布局
