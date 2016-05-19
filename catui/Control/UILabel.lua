@@ -1,6 +1,7 @@
 local UILabel = UIControl:extend("UILabel", {
     size = 12,
     drawable = nil,
+    font = nil,
     text = "",
     color = {0, 0, 0, 255}
 })
@@ -9,23 +10,14 @@ local UILabel = UIControl:extend("UILabel", {
 function UILabel:init(text, size, fontFile)
     UIControl.init(self)
 
-    self:setClip(true)
-
+    -- self:setClip(true)
     self.events:on(UI_DRAW, self.onDraw, self)
-    self.events:on(UI_CLICK, function()
-        self:setText("A")
-    end, self)
 
-    self.text = text
     self.size = size
+    self.text = text
 
-    local font = nil
-    if fontFile then
-        font = love.graphics.newFont(fontFile, size)
-    else
-        font = love.graphics.getFont()
-    end
-    self.drawable = love.graphics.newText(font, text)
+    self.font = love.graphics.newFont(fontFile, size)
+    self.drawable = love.graphics.newText(self.font, text)
 
     self:resetSize()
 end
@@ -36,17 +28,16 @@ function UILabel:onDraw()
     local x, y = box:getPos()
     local color = self.color
 
-    local br, bg, bb, ba = love.graphics.getColor()
+    local r, g, b, a = love.graphics.getColor()
     love.graphics.setColor(color[1], color[2], color[3], color[4])
     love.graphics.draw(self.drawable, x, y)
-    love.graphics.setColor(br, bg, bb, ba)
+    love.graphics.setColor(r, g, b, a)
 end
 
---- TODO 设置字体 传入文件名或字体实例
+--- 设置字体
 function UILabel:setFont(fileName)
-    local font = love.graphics.newFont(fontFile, self.size)
-    self.drawable:setFont(font)
-    self:resetSize()
+    self.font = love.graphics.newFont(fileName, self.size)
+    self.drawable:setFont(self.font)
 end
 
 --- 获取字体
@@ -58,7 +49,6 @@ end
 function UILabel:setText(text)
     self.text = text
     self.drawable:set(text)
-    self:resetSize()
 end
 
 --- 获取文字
@@ -67,15 +57,14 @@ function UILabel:getText()
 end
 
 --- 设置文字大小
-function UILabel:setSize(size)
+function UILabel:setFontSize(size)
     self.size = size
-    self.drawable:getFont():setWidth(size)
-    self.drawable:getFont():setHeight(size)
-    self:resetSize()
+    self.font = love.graphics.newFont("font/visat.ttf", size)
+    self.drawable:setFont(self.font)
 end
 
 --- 获取文字大小
-function UILabel:getSize()
+function UILabel:getFontSize()
     return self.size
 end
 

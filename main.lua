@@ -15,14 +15,12 @@ UIButton = require "catui.Control.UIButton"
 UIImage = require "catui.Control.UIImage"
 
 function love.load(arg)
-
     love.graphics.setBackgroundColor(255, 255, 255, 255)
 
     mgr = UIManager:getInstance()
 
     childA = UIButton:new("img/gem.png", "img/equip1.png", "img/equip2.png")
     childA:setPos(0, 0)
-    -- childA:setSize(100, 50)
     childA:setAnchor(0, 0)
     mgr.rootCtrl.coreContainer:addChild(childA)
 
@@ -31,26 +29,23 @@ function love.load(arg)
     img:setPos(150, 150)
     childA:addChild(img)
 
-    local label = UILabel:new("AAAA\nHello World", 46)
+    local label = UILabel:new("Hello World!\n你好世界！", 46, "font/visat.ttf")
+    label:setFontSize(24)
+    label:setAnchor(0, 0)
     img:addChild(label)
-
-    texture = love.graphics.newText(love.graphics.getFont(), "...")
 
     --------------------------------------
     childA.events:on(UI_FOCUS, function()
-        texture = love.graphics.newText(love.graphics.getFont(), UI_FOCUS)
+        label:setText(label:getWidth() .. " " .. label:getHeight())
     end)
     --------------------------------------
     childA.events:on(UI_UN_FOCUS, function()
-        texture = love.graphics.newText(love.graphics.getFont(), UI_UN_FOCUS)
     end)
     --------------------------------------
     childA.events:on(UI_MOUSE_MOVE, function(x, y, dx, dy)
-        texture = love.graphics.newText(love.graphics.getFont(), UI_MOUSE_MOVE)
     end)
     --------------------------------------
     childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
-        texture = love.graphics.newText(love.graphics.getFont(), UI_DB_CLICK)
     end)
     --------------------------------------
 
@@ -68,7 +63,6 @@ end
 
 function love.draw()
     mgr:draw()
-    love.graphics.draw(texture, 100, 100)
 end
 
 function love.mousemoved(x, y, dx, dy)
