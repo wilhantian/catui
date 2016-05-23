@@ -13,16 +13,22 @@ UIPanel = require "catui.Control.UIPanel"
 UILabel = require "catui.Control.UILabel"
 UIButton = require "catui.Control.UIButton"
 UIImage = require "catui.Control.UIImage"
+UIContent = require "catui.Control.UIContent"
 
 function love.load(arg)
     love.graphics.setBackgroundColor(255, 255, 255, 255)
 
     mgr = UIManager:getInstance()
 
+    local content = UIContent:new()
+    content:setSize(250, 250)
+    content:setContentSize(450, 450)
+    mgr.rootCtrl.coreContainer:addChild(content)
+
     childA = UIButton:new("img/gem.png", "img/equip1.png", "img/equip2.png")
     childA:setPos(0, 0)
     childA:setAnchor(0, 0)
-    mgr.rootCtrl.coreContainer:addChild(childA)
+    content:addChild(childA)
 
     local img = UIImage:new("img/gem.png")
     img:setSize(150, 150)
@@ -85,6 +91,10 @@ end
 
 function love.keyreleased(key)
     mgr:keyUp(key)
+end
+
+function love.wheelmoved(x, y)
+    mgr:whellMove(x, y)
 end
 
 function love.resize(w, h)

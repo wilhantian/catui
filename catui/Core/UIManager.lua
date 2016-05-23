@@ -147,6 +147,18 @@ function UIManager:mouseUp(x, y, button, isTouch)
     end
 end
 
+function UIManager:whellMove(x, y)
+    -- 给所有在鼠标上的控件派发 顺序从高层想底层
+    local hitCtrl = self.rootCtrl:hitTest(love.mouse.getX(), love.mouse.getY())
+    while hitCtrl do
+        self:mouseMove(love.mouse.getX(), love.mouse.getY(), 0, 0)
+        if hitCtrl.events:dispatch(UI_WHELL_MOVE, x, y) then
+            return
+        end
+        hitCtrl = hitCtrl:getParent()
+    end
+end
+
 ---------------------------------------
 -- 键盘按下事件
 ---------------------------------------

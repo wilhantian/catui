@@ -106,6 +106,7 @@ function UIControl:validate()
     box.bottom = self.worldY + self.height
 
     for i,v in ipairs(self.children) do
+        v:needValidate()
         v:validate()
     end
 

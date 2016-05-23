@@ -13,8 +13,6 @@ local UILabel = UIControl:extend("UILabel", {
 function UILabel:init(fontName, text, size)
     UIControl.init(self)
 
-    self:setClip(true)
-
     self.size = size
     self.text = text
 

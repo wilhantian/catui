@@ -14,24 +14,31 @@ end
 function UIEvent:dispatch(name, ...)
     local hands = self.handlers[name]
     if not hands then
-        return
+        return false
     end
 
     for i,v in ipairs(hands) do
         if v.callback then
             if v.targer then
-                v.callback(v.targer, ...)
+                if v.callback(v.targer, ...) then
+                    return true
+                end
             else
-                v.callback(...)
+                if v.callback(...) then
+                    return true
+                end
             end
         end
     end
+
+    return false
 end
 
 ---------------------------------------
 -- 监听事件
 -- 如果设置了targer, 回调函数中第一个参数/self就是targer
 -- 反之, 如果未设置targer, 回调函数中的self为nil, 第一个参是正常的回调参数
+-- @return [boolean] 是否截断后续派发
 ---------------------------------------
 function UIEvent:on(name, callback, _targer)
     if not self.handlers[name] then
