@@ -47,7 +47,7 @@ function UIControl:draw()
     for i,v in ipairs(self.children) do
         v:draw(dt)
     end
-
+    
     self:clipEnd()
 end
 
@@ -70,7 +70,7 @@ function UIControl:clipBegin()
 	    local stencilfunc = function()
 	        love.graphics.rectangle("fill", x, y, w, h)
 	    end
-	    love.graphics.stencil(stencilfunc)
+	    love.graphics.stencil(stencilfunc, "replace", 1)
 	    love.graphics.setStencilTest("greater", 0)
 	end
 end

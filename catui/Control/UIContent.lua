@@ -10,14 +10,6 @@ function UIContent:init()
     self.events:on(UI_WHELL_MOVE, self.onWhellMove, self)
 
     self.contentCtrl = UIControl:new()
-    self.contentCtrl.events:on(UI_DRAW, function()
-        local box = self.contentCtrl:getBoundingBox()
-        love.graphics.push("all")
-        love.graphics.setLineWidth(6)
-        love.graphics.setColor(0, 255, 0, 255)
-        love.graphics.rectangle("line", box:getX(), box:getY(), box:getWidth(), box:getHeight())
-        love.graphics.pop()
-    end)
     UIControl.addChild(self, self.contentCtrl)
 end
 
@@ -35,22 +27,6 @@ function UIContent:onWhellMove(x, y)
         return false
     end
 
-    -- 垂直滚动
-    if y < 0 then -- 向上滚动
-        local offset = self:getHeight() - self.contentCtrl:getHeight()
-        if cy <= offset then
-            self.contentCtrl:setY(offset)
-        else
-            self.contentCtrl:setY(cy)
-        end
-    else -- 向下滚动
-        if cy >= 0 then
-            self.contentCtrl:setY(0)
-        else
-            self.contentCtrl:setY(cy)
-        end
-    end
-
     -- 水平滚动
     if x < 0 then -- 向左滚动
         local offset = self:getWidth() - self.contentCtrl:getWidth()
@@ -58,12 +34,32 @@ function UIContent:onWhellMove(x, y)
             self.contentCtrl:setX(offset)
         else
             self.contentCtrl:setX(cx)
+            isHandled = true
         end
     else -- 向右滚动
         if cx >= 0 then
             self.contentCtrl:setX(0)
         else
             self.contentCtrl:setX(cx)
+            isHandled = true
+        end
+    end
+
+    -- 垂直滚动
+    if y < 0 then -- 向上滚动
+        local offset = self:getHeight() - self.contentCtrl:getHeight()
+        if cy <= offset then
+            self.contentCtrl:setY(offset)
+        else
+            self.contentCtrl:setY(cy)
+            isHandled = true
+        end
+    else -- 向下滚动
+        if cy >= 0 then
+            self.contentCtrl:setY(0)
+        else
+            self.contentCtrl:setY(cy)
+            isHandled = true
         end
     end
 
