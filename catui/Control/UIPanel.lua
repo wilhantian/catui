@@ -16,9 +16,9 @@ function UIPanel:onDraw()
     love.graphics.rectangle("fill", x, y, width, height)
     -- 描边
     love.graphics.setLineWidth(1)
-    love.graphics.setLineStyle("rough")--smooth
+    love.graphics.setLineStyle("smooth")--smooth rough
     love.graphics.setColor(Color4(COLOR_BG_STROKE))
-    love.graphics.rectangle("line", x, y, width, height)
+    love.graphics.rectangle("line", x, y, width, height, 8, 8)
     love.graphics.pop()
 end
 

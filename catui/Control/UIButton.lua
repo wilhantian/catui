@@ -17,7 +17,6 @@ function UIButton:init(upFileName, downFileName, hoveFileName, disabledFileName)
     self:setImage(upFileName, downFileName, hoveFileName, disabledFileName)
     self:resetSize()
 
-    self.events:on(UI_DRAW, self.onDraw, self)
     self.events:on(UI_MOUSE_ENTER, self.onMouseEnter, self)
     self.events:on(UI_MOUSE_LEAVE, self.onMouseLevel, self)
     self.events:on(UI_MOUSE_DOWN, self.onMouseDown, self)
@@ -85,6 +84,21 @@ function UIButton:resetSize()
         self:setWidth(0)
         self:setHeight(0)
     end
+end
+
+--- 设置按钮名字
+function UIButton:setText(text)
+    self:setText(text)
+end
+
+--- 获取按钮名字
+function UIButton:getText()
+    self.label:getText()
+end
+
+--- 获取label
+function UIButton:getLabel()
+    return self.label
 end
 
 return UIButton

@@ -29,9 +29,10 @@ function love.load(arg)
     img:setPos(150, 150)
     childA:addChild(img)
 
-    local label = UILabel:new("Hello World!\n你好世界！", 46, "font/visat.ttf")
-    label:setFontSize(24)
+    local label = UILabel:new("font/visat.ttf", "Hello World!你好世界！", 24)
     label:setAnchor(0, 0)
+    label:setSize(100, 1000)
+    label:setAutoSize(false)
     img:addChild(label)
 
     --------------------------------------
@@ -46,14 +47,15 @@ function love.load(arg)
     end)
     --------------------------------------
     childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
+      label:setText("啊哈哈哈哈啊哈哈哈哈啊哈哈哈")
     end)
     --------------------------------------
 
     local panel = UIPanel:new()
     panel.x = 300
     panel.y = 300
-    panel.width = 400
-    panel.height = 350
+    panel.width = 200
+    panel.height = 80
     mgr.rootCtrl.coreContainer:addChild(panel)
 end
 
