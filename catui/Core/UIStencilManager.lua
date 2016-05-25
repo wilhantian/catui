@@ -1,6 +1,5 @@
 local UIStencilManager = class("UIStencilManager", {
     instance = nil,
-    layerIndex = 1,
     stencilList = {},
     maxX1 = 0,
     maxY1 = 0,
@@ -8,6 +7,7 @@ local UIStencilManager = class("UIStencilManager", {
     maxY2 = 0
 })
 
+--- 获取一个模板管理器单例
 function UIStencilManager:getInstance()
     if not UIStencilManager.instance then
         UIStencilManager.instance = UIStencilManager:new()
@@ -15,9 +15,7 @@ function UIStencilManager:getInstance()
     return UIStencilManager.instance
 end
 
-function UIStencilManager:init()
-end
-
+--- 模板绘图开始
 --- XXX 此处需要性能调优
 function UIStencilManager:stencilBegin(x, y, w, h)
     --找出当前可是区域
@@ -50,6 +48,7 @@ function UIStencilManager:stencilBegin(x, y, w, h)
     love.graphics.setStencilTest("greater", 0)
 end
 
+--- 模板绘图结束
 function UIStencilManager:stencilEnd()
     table.remove(self.stencilList, #self.stencilList)
     love.graphics.setStencilTest()
