@@ -44,10 +44,11 @@ function UIControl:draw()
     self:clipBegin()
 
     self.events:dispatch(UI_DRAW)
+
     for i,v in ipairs(self.children) do
         v:draw(dt)
     end
-    
+
     self:clipEnd()
 end
 
@@ -67,18 +68,20 @@ function UIControl:clipBegin()
         local box = self:getBoundingBox()
 		local x, y = box.left, box.top
         local w, h = box:getWidth(), box:getHeight()
-	    local stencilfunc = function()
-	        love.graphics.rectangle("fill", x, y, w, h)
-	    end
-	    love.graphics.stencil(stencilfunc, "replace", 1)
-	    love.graphics.setStencilTest("greater", 0)
+	    -- local stencilfunc = function()
+	    --     love.graphics.rectangle("fill", x, y, w, h)
+	    -- end
+	    -- love.graphics.stencil(stencilfunc, "replace", 1)
+	    -- love.graphics.setStencilTest("greater", 0)
+        UIStencilManager:getInstance():stencilBegin(x, y, w, h)
 	end
 end
 
 --- 裁剪结束
 function UIControl:clipEnd()
     if self.clip then
-		love.graphics.setStencilTest()
+		-- love.graphics.setStencilTest()
+        UIStencilManager:getInstance():stencilEnd()
 	end
 end
 

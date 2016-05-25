@@ -16,6 +16,8 @@ function UILabel:init(fontName, text, size)
     self.size = size
     self.text = text
 
+    self:setClip(true)
+
     if fontName == nil or fontName == "" then
         self.fontName = "font/visat.ttf"
     else

@@ -6,6 +6,7 @@ require "catui.Core.UIDefine"
 point = require "catui.Utils.Utils"
 Rect = require "catui.Core.Rect"
 UIEvent = require "catui.Core.UIEvent"
+UIStencilManager = require "catui.Core.UIStencilManager"
 UIControl = require "catui.Core.UIControl"
 UIRoot = require "catui.Core.UIRoot"
 UIManager = require "catui.Core.UIManager"
@@ -21,7 +22,7 @@ function love.load(arg)
     mgr = UIManager:getInstance()
 
     local content = UIContent:new()
-    content:setSize(250, 250)
+    content:setSize(150, 150)
     content:setContentSize(450, 450)
     mgr.rootCtrl.coreContainer:addChild(content)
 
