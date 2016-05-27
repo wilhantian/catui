@@ -3,6 +3,8 @@ tween = require "catui.libs.tween"
 
 require "catui.Core.UIDefine"
 
+theme = require "catui.UITheme"
+
 point = require "catui.Utils.Utils"
 Rect = require "catui.Core.Rect"
 UIEvent = require "catui.Core.UIEvent"
@@ -17,7 +19,7 @@ UIImage = require "catui.Control.UIImage"
 UIContent = require "catui.Control.UIContent"
 
 function love.load(arg)
-    love.graphics.setBackgroundColor(255, 255, 255, 255)
+    love.graphics.setBackgroundColor(41, 50, 59, 255)
 
     mgr = UIManager:getInstance()
 
@@ -26,9 +28,12 @@ function love.load(arg)
     content:setContentSize(450, 450)
     mgr.rootCtrl.coreContainer:addChild(content)
 
-    childA = UIButton:new("img/gem.png", "img/equip1.png", "img/equip2.png")
+    childA = UIButton:new()
+    childA:setText("登陆")
+    childA:setIcon("img/icon_haha.png", "left")
     childA:setPos(0, 0)
     childA:setAnchor(0, 0)
+    childA:setSize(100, 40)
     content:addChild(childA)
 
     local img = UIImage:new("img/gem.png")
