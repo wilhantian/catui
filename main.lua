@@ -16,22 +16,24 @@ UIPanel = require "catui.Control.UIPanel"
 UILabel = require "catui.Control.UILabel"
 UIButton = require "catui.Control.UIButton"
 UIImage = require "catui.Control.UIImage"
+UIScrollBar = require "catui.Control.UIScrollBar"
 UIContent = require "catui.Control.UIContent"
 
 function love.load(arg)
-    love.graphics.setBackgroundColor(41, 50, 59, 255)
+    love.graphics.setBackgroundColor(35, 42, 50, 255)
 
     mgr = UIManager:getInstance()
 
     local content = UIContent:new()
+    content:setPos(10, 20)
     content:setSize(150, 150)
     content:setContentSize(450, 450)
     mgr.rootCtrl.coreContainer:addChild(content)
 
     childA = UIButton:new()
+    childA:setPos(10, 10)
     childA:setText("登陆")
     childA:setIcon("img/icon_haha.png", "left")
-    childA:setPos(0, 0)
     childA:setAnchor(0, 0)
     childA:setSize(100, 40)
     content:addChild(childA)
@@ -62,13 +64,6 @@ function love.load(arg)
       label:setText("啊哈哈哈哈啊哈哈哈哈啊哈哈哈")
     end)
     --------------------------------------
-
-    local panel = UIPanel:new()
-    panel.x = 300
-    panel.y = 300
-    panel.width = 200
-    panel.height = 80
-    mgr.rootCtrl.coreContainer:addChild(panel)
 end
 
 function love.update(dt)

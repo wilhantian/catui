@@ -19,6 +19,8 @@ UI_MOVE = "move"    -- UI坐标发生改变
 UI_ON_ADD = "onAdd" -- UI被添加到父控件时
 UI_ON_REMOVE = "onRemove" -- UI被移除时
 
+UI_ON_SCROLL = "onScroll" -- 滚动
+
 COLOR_BG_NULL = {r=255, g=255, b=255}
 COLOR_BG_NONE = {r=247, g=247, b=249}
 COLOR_BG_STROKE = {r=225, g=225, b=225}

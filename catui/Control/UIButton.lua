@@ -8,11 +8,11 @@ local UIButton = UIControl:extend("UIButton", {
     textDrawable = nil,
     iconImg = nil,
     iconDir = "left",
-    colorUp = nil,
-    colorDown = nil,
-    colorHover = nil,
-    colorDisable = nil,
-    colorStroke = nil,
+    upColor = nil,
+    downColor = nil,
+    hoverColor = nil,
+    disableColor = nil,
+    strokeColor = nil,
     stroke = 1,
     iconAndTextSpace = 6
 })
@@ -20,9 +20,7 @@ local UIButton = UIControl:extend("UIButton", {
 --- 构造
 function UIButton:init()
     UIControl.init(self)
-
     self:initTheme()
-
     self:setEnabled(true)
 
     self.events:on(UI_DRAW, self.onDraw, self)
@@ -33,12 +31,13 @@ function UIButton:init()
 end
 
 --- 初始化主题
-function UIButton:initTheme()
-    self.colorUp = theme.button.colorUp
-    self.colorDown = theme.button.colorDown
-    self.colorHover = theme.button.colorHover
-    self.colorDisable = theme.button.colorDisable
-    self.colorStroke = theme.button.colorStroke
+function UIButton:initTheme(_theme)
+    local theme = theme or _theme
+    self.upColor = theme.button.upColor
+    self.downColor = theme.button.downColor
+    self.hoverColor = theme.button.hoverColor
+    self.disableColor = theme.button.disableColor
+    self.strokeColor = theme.button.strokeColor
     self.stroke = theme.button.stroke
     self.font = love.graphics.newFont(theme.button.font, theme.button.fontSize)
     self.textDrawable = love.graphics.newText(self.font, self.text)
@@ -57,10 +56,10 @@ function UIButton:onDraw()
     local color = nil
 
     -- 按钮本身
-    if self.isPressed then color = self.colorDown
-    elseif self.isHoved then color = self.colorHover
-    elseif self.enabled then color = self.colorUp
-    else color = self.colorDisable end
+    if self.isPressed then color = self.downColor
+    elseif self.isHoved then color = self.hoverColor
+    elseif self.enabled then color = self.upColor
+    else color = self.disableColor end
 
     love.graphics.setColor(color[1], color[2], color[3], color[4])
     love.graphics.rectangle("fill", x, y, w, h)
@@ -70,7 +69,7 @@ function UIButton:onDraw()
         local oldLineWidth = love.graphics.getLineWidth()
         love.graphics.setLineWidth(self.stroke)
         love.graphics.setLineStyle("rough")
-        color = self.colorStroke
+        color = self.strokeColor
         love.graphics.setColor(color[1], color[2], color[3], color[4])
         love.graphics.rectangle("line", x, y, w, h)
         love.graphics.setLineWidth(oldLineWidth)
@@ -142,10 +141,45 @@ function UIButton:setIcon(icon)
     self.iconImg = love.graphics.newImage(icon)
 end
 
+--- 设置Icon方向
+function UIButton:setIconDir(dir)
+    self.iconDir = dir
+end
+
 --- 设置文字
 function UIButton:setText(text)
     self.text = text
     self.textDrawable:set(text)
+end
+
+--- 设置抬起颜色
+function UIButton:setUpColor(color)
+    self.upColor = color
+end
+
+--- 设置按下颜色
+function UIButton:setDownColor(color)
+    self.downColor = color
+end
+
+--- 设置悬浮颜色
+function UIButton:setHoverColor(color)
+    self.hoverColor = color
+end
+
+--- 设置禁用颜色
+function UIButton:setDisableColor(color)
+    self.disableColor = color
+end
+
+--- 设置描边
+function UIButton:setStroke(stroke)
+    self.stroke = stroke
+end
+
+--- 设置描边颜色
+function UIButton:setStrokeColor(color)
+    self.strokeColor = color
 end
 
 return UIButton
