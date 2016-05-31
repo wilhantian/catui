@@ -80,6 +80,12 @@ function UIContent:onWhellMove(x, y)
     end
 
     -- 垂直滚动
+    local r = (self:getHeight()-cy)/(self:getContentHeight())
+    print(r)
+    self.vBar:setBarPos(r)
+
+--[[
+    -- 垂直滚动
     if y < 0 then -- 向上滚动
         local offset = self:getHeight() - self.contentCtrl:getHeight()
         if cy <= offset then
@@ -94,7 +100,7 @@ function UIContent:onWhellMove(x, y)
             self:setContentOffsetY(cy)
         end
     end
-
+    ]]
     return true
 end
 
@@ -189,6 +195,7 @@ function UIControl:resetBar()
 
     local cw, ch = self:getContentSize()
     self.vBar:setRatio(ch/self:getHeight())
+    self.hBar:setRatio(cw/self:getWidth())
 end
 
 return UIContent
