@@ -52,68 +52,40 @@ end
 
 --- 鼠标滚轮事件
 function UIContent:onWhellMove(x, y)
-    local cx = self.contentCtrl:getX() + x * 3
-    local cy = self.contentCtrl:getY() + y * 3
-
-    if x ~= 0 and self:getWidth() > self.contentCtrl:getWidth() then -- 内容小于容器
+    -- 内容小于容器
+    if x ~= 0 and self:getWidth() > self.contentCtrl:getWidth() then
         return false
     end
-
-    if y ~= 0 and self:getHeight() > self.contentCtrl:getHeight() then -- 内容小于容器
+    -- 内容小于容器
+    if y ~= 0 and self:getHeight() > self.contentCtrl:getHeight() then
         return false
     end
 
     -- 水平滚动
-    if x < 0 then -- 向左滚动
-        local offset = self:getWidth() - self.contentCtrl:getWidth()
-        if cx <= offset then
-            self:setContentOffsetX(offset)
-        else
-            self:setContentOffsetX(cx)
-        end
-    else -- 向右滚动
-        if cx >= 0 then
-            self:setContentOffsetX(0)
-        else
-            self:setContentOffsetX(cx)
-        end
+    if x ~= 0 then
+        local offsetR = x / self:getContentWidth() * 3
+        self.hBar:setBarPos(self.hBar:getBarPos() - offsetR)
     end
 
     -- 垂直滚动
-    local r = (self:getHeight()-cy)/(self:getContentHeight())
-    print(r)
-    self.vBar:setBarPos(r)
-
---[[
-    -- 垂直滚动
-    if y < 0 then -- 向上滚动
-        local offset = self:getHeight() - self.contentCtrl:getHeight()
-        if cy <= offset then
-            self:setContentOffsetY(offset)
-        else
-            self:setContentOffsetY(cy)
-        end
-    else -- 向下滚动
-        if cy >= 0 then
-            self:setContentOffsetY(0)
-        else
-            self:setContentOffsetY(cy)
-        end
+    if y ~= 0 then
+        local offsetR = y / self:getContentHeight() * 3
+        self.vBar:setBarPos(self.vBar:getBarPos() - offsetR)
     end
-    ]]
+
     return true
 end
 
 --- 垂直滚动条
 function UIContent:onVBarScroll(ratio)
     local offset = -ratio * self:getContentHeight()
-    self:setContentOffsetY(offset)
+    self.contentCtrl:setY(offset)
 end
 
 --- 水平滚动条
 function UIContent:onHBarScroll(ratio)
     local offset = -ratio * self:getContentWidth()
-    self:setContentOffsetX(offset)
+    self.contentCtrl:setX(offset)
 end
 
 --- 复写
@@ -163,16 +135,19 @@ end
 --- 设置偏移量
 function UIContent:setContentOffsetPos(x, y)
     self.contentCtrl:setPos(x, y)
+    self:resetBar()
 end
 
 --- 设置x偏移量
 function UIContent:setContentOffsetX(x)
     self.contentCtrl:setX(x)
+    self:resetBar()
 end
 
 --- 设置y偏移量
 function UIContent:setContentOffsetY(y)
     self.contentCtrl:setY(y)
+    self:resetBar()
 end
 
 --- 复写addChild
