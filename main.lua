@@ -8,16 +8,17 @@ theme = require "catui.UITheme"
 point = require "catui.Utils.Utils"
 Rect = require "catui.Core.Rect"
 UIEvent = require "catui.Core.UIEvent"
-UIStencilManager = require "catui.Core.UIStencilManager"
 UIControl = require "catui.Core.UIControl"
 UIRoot = require "catui.Core.UIRoot"
 UIManager = require "catui.Core.UIManager"
-UIPanel = require "catui.Control.UIPanel"
 UILabel = require "catui.Control.UILabel"
 UIButton = require "catui.Control.UIButton"
 UIImage = require "catui.Control.UIImage"
 UIScrollBar = require "catui.Control.UIScrollBar"
 UIContent = require "catui.Control.UIContent"
+UICheckBox = require "catui.Control.UICheckBox"
+UIProgressBar = require "catui.Control.UIProgressBar"
+UIEditText = require "catui.Control.UIEditText"
 
 function love.load(arg)
     love.graphics.setBackgroundColor(35, 42, 50, 255)
@@ -35,7 +36,7 @@ function love.load(arg)
     childA:setText("登陆")
     childA:setIcon("img/icon_haha.png", "left")
     childA:setAnchor(0, 0)
-    childA:setSize(100, 40)
+    -- childA:setSize(100, 40)
     content:addChild(childA)
 
     local img = UIImage:new("img/gem.png")
@@ -49,6 +50,21 @@ function love.load(arg)
     label:setAutoSize(false)
     img:addChild(label)
 
+    local checkBox = UICheckBox:new()
+    checkBox:setPos(200, 60)
+    content:addChild(checkBox)
+
+    local progressBar = UIProgressBar:new()
+    progressBar:setPos(100, 100)
+    progressBar:setSize(100, 10)
+    progressBar:setValue(40)
+    content:addChild(progressBar)
+
+    local editText = UIEditText:new()
+    editText:setPos(100, 120)
+    editText:setSize(120, 50)
+    content:addChild(editText)
+
     --------------------------------------
     childA.events:on(UI_FOCUS, function()
         label:setText(label:getWidth() .. " " .. label:getHeight())
@@ -61,7 +77,7 @@ function love.load(arg)
     end)
     --------------------------------------
     childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
-      label:setText("啊哈哈哈哈啊哈哈哈哈啊哈哈哈")
+        label:setText("啊哈哈哈哈啊哈哈哈哈啊哈哈哈")
     end)
     --------------------------------------
 end
@@ -101,3 +117,16 @@ end
 function love.resize(w, h)
     mgr:resize(w, h)
 end
+
+--- 当在输入法编辑器中输入时调用
+function love.textedited( text, start, length )
+    -- print(text .. "  start:" .. start .. " length" .. length)
+end
+
+--- 当成功输入时
+function love.textinput(text)
+    -- print(text)
+end
+
+--- 设置输入区域
+-- love.keyboard.setTextInput(true, x, y, w, h )

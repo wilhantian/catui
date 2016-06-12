@@ -33,6 +33,8 @@ end
 --- 初始化主题
 function UIButton:initTheme(_theme)
     local theme = theme or _theme
+    self.width = theme.button.width
+    self.height = theme.button.height
     self.upColor = theme.button.upColor
     self.downColor = theme.button.downColor
     self.hoverColor = theme.button.hoverColor

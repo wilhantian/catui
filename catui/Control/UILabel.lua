@@ -6,7 +6,7 @@ local UILabel = UIControl:extend("UILabel", {
     drawable = nil,
     color = {0, 0, 0, 255},
     lineHeight = 1,
-    autoSize = true,
+    autoSize = true
 })
 
 --- 构造
@@ -131,7 +131,7 @@ function UILabel:textTest()
         self:setSize(self.drawable:getWidth(), self.drawable:getHeight())
     else
         local _, t = self.font:getWrap(self.text, self:getWidth())
-        local text = "";
+        local text = ""
         for i,v in ipairs(t) do
             if i == #t then
                 text = text .. v

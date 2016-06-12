@@ -20,4 +20,21 @@ function point.rotate(x, y, ox, oy, r)
     return x, y
 end
 
+-- Apply a scissor to the current scissor (intersect the rects)
+function clipScissor(nx, ny, nw, nh)
+    local ox, oy, ow, oh = love.graphics.getScissor()
+    if ox then
+        -- Intersect both rects
+        nw = nx + nw
+        nh = ny + nh
+        nx, ny = math.max(nx, ox), math.max(ny, oy)
+        nw = math.max(0, math.min(nw, ox + ow) - nx)
+        nh = math.max(0, math.min(nh, oy + oh) - ny)
+    end
+    -- Set new scissor
+    love.graphics.setScissor(nx, ny, nw, nh)
+    -- Return old scissor
+    return ox, oy, ow, oh
+end
+
 return point
