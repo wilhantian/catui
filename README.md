@@ -1,12 +1,35 @@
 # catui
-A very light-weight GUI library for the Löve2D
+A very light-weight GUI framework for the Löve2D
 
 ## What do I want in my GUI library?
 + Simple
 + Light-weight
 + Extensible
 + Rich events
-+ ~~Multiple layout~~
+
+## Explain
+You should expand your own control, but you can also use the control folder under the control
+
+## Example
+```
+require "catui"
+
+local myBtn = UIControl:new()
+
+myBtn.events:on(UI_DRAW, function()
+    local box = self:getBoundingBox()
+    local x, y = box.left, box.top
+    local w, h = box:getWidth(), box:getHeight()
+    love.graphics.setColor(0, 255, 0, 255)
+    love.graphics.rectangle(x, y, w, h)
+end, myBtn)
+
+myBtn.events:on(UI_CLICK, function()
+    print("my buton is click")
+end)
+
+UIManager:getInstance().rootCtrl.coreContainer:addChild(myBtn)
+```
 
 ## API DOC
 [Goto Read](http://htmlpreview.github.io/?https://github.com/wilhantian/catui/blob/master/doc/index.html)
