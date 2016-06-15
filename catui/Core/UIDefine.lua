@@ -22,6 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
 
+-------------------------------------
+-- UI Event define
+-------------------------------------
+
 UI_MOUSE_DOWN = "mouseDown"
 UI_MOUSE_UP = "mouseUp"
 UI_MOUSE_MOVE = "mouseMove"
