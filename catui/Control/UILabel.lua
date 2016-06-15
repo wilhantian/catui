@@ -188,7 +188,7 @@ end
 
 -------------------------------------
 -- set is auto size
--- @boolean autoSize is auto size
+-- @bool autoSize is auto size
 -------------------------------------
 function UILabel:setAutoSize(autoSize)
     self.autoSize = autoSize
@@ -197,7 +197,7 @@ end
 
 -------------------------------------
 -- get is auto size
--- @treturn boolean is auto size
+-- @treturn bool is auto size
 -------------------------------------
 function UILabel:isAutoSize()
     return self.autoSize

@@ -261,7 +261,7 @@ end
 
 -------------------------------------
 -- set more line input type
--- @boolean moreLine
+-- @bool moreLine
 -------------------------------------
 function UIEditText:setMoreLine(moreLine)
     self.moreLine = moreLine
@@ -270,7 +270,7 @@ end
 
 -------------------------------------
 -- get more line input type
--- @treturn boolean is more line
+-- @treturn bool is more line
 -------------------------------------
 function UIEditText:getMoreLine(moreLine)
     return self.moreLine

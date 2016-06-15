@@ -8,6 +8,9 @@ A very light-weight GUI library for the Löve2D
 + Rich events
 + ~~Multiple layout~~
 
+## API DOC
+[Goto Read](http://htmlpreview.github.io/?https://github.com/wilhantian/catui/blob/master/doc/index.html)
+
 ## License
     The MIT License (MIT)
 
