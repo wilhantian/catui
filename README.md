@@ -15,6 +15,8 @@ You should expand your own control, but you can also use the control folder unde
 require "catui"
 
 local myBtn = UIControl:new()
+myBtn:setPos(100, 100)
+myBtn:setSize(100, 40)
 
 myBtn.events:on(UI_DRAW, function()
     local box = self:getBoundingBox()
