@@ -34,6 +34,9 @@ UIManager:getInstance().rootCtrl.coreContainer:addChild(myBtn)
 ## API DOC
 [Goto Read](http://htmlpreview.github.io/?https://github.com/wilhantian/catui/blob/master/doc/index.html)
 
+## Screenshot
+![Screenshot](doc/screen.jpg)
+
 ## License
     The MIT License (MIT)
 
