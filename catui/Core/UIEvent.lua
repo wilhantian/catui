@@ -1,16 +1,51 @@
+--[[
+The MIT License (MIT)
+
+Copyright (c) 2016 WilhanTian  田伟汉
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]--
+
+-------------------------------------
+-- UIEvent
+-- @usage
+-- local event = UIEvent:new()
+-- event:on("fuck", function(param)
+--     print("fuck you too " .. param)
+-- end)
+-- event:dispatch("fuck", "hahahah")
+-------------------------------------
 local UIEvent = class("UIEvent", {
     handlers = {}
 })
 
----------------------------------------
--- 构造
----------------------------------------
+-------------------------------------
+-- construct
+-------------------------------------
 function UIEvent:init()
 end
 
----------------------------------------
--- 派发事件
----------------------------------------
+-------------------------------------
+-- dispatch event
+-- @string name event name
+-- @param ...
+-------------------------------------
 function UIEvent:dispatch(name, ...)
     local hands = self.handlers[name]
     if not hands then
@@ -35,10 +70,11 @@ function UIEvent:dispatch(name, ...)
 end
 
 ---------------------------------------
--- 监听事件
--- 如果设置了targer, 回调函数中第一个参数/self就是targer
--- 反之, 如果未设置targer, 回调函数中的self为nil, 第一个参是正常的回调参数
--- @return [boolean] 是否截断后续派发
+-- listen event
+-- @string name event name
+-- @param callback
+-- @param _targer
+-- @treturn bool is stop dispatch
 ---------------------------------------
 function UIEvent:on(name, callback, _targer)
     if not self.handlers[name] then
@@ -50,7 +86,8 @@ function UIEvent:on(name, callback, _targer)
 end
 
 ---------------------------------------
--- 移除事件
+-- remove listen
+-- @param handle
 ---------------------------------------
 function UIEvent:remove(handle)
     local handlers = self.handlers
@@ -69,7 +106,7 @@ function UIEvent:remove(handle)
 end
 
 ---------------------------------------
--- 移除所有事件
+-- remove all listen
 ---------------------------------------
 function UIEvent:removeAll()
     self.handlers = {}

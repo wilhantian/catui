@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><strong>catui.Control.UILabel</strong></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Control.UILabel</code></h1>
+<p>UILabel</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local label = UILabel:new(&quot;font/visat.ttf&quot;, &quot;Hello World！&quot;, 24)
+ label:setAnchor(0, 0)
+ label:setSize(100, 100)
+ label:setAutoSize(false)
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init (fontName, text, size)</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDraw">onDraw ()</a></td>
+	<td class="summary">(callback)
+ draw self</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setText">setText (text)</a></td>
+	<td class="summary">set text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getText">getText ()</a></td>
+	<td class="summary">get text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setFont">setFont (fontName)</a></td>
+	<td class="summary">set font</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getFont">getFont ()</a></td>
+	<td class="summary">get font</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getFontName">getFontName ()</a></td>
+	<td class="summary">get font name</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setFontSize">setFontSize (size)</a></td>
+	<td class="summary">set font size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getFontSize">getFontSize ()</a></td>
+	<td class="summary">get font size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setFontColor">setFontColor (color)</a></td>
+	<td class="summary">set font color</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getFontColor">getFontColor ()</a></td>
+	<td class="summary">get font color</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setLineHeight">setLineHeight (lineHeight)</a></td>
+	<td class="summary">set line height</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getLineHeight">getLineHeight ()</a></td>
+	<td class="summary">get line height</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setAutoSize">setAutoSize (autoSize)</a></td>
+	<td class="summary">set is auto size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isAutoSize">isAutoSize ()</a></td>
+	<td class="summary">get is auto size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#textTest">textTest ()</a></td>
+	<td class="summary">test text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getDrawable">getDrawable ()</a></td>
+	<td class="summary">get drawable</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getWrap">getWrap ()</a></td>
+	<td class="summary">get a wrap array</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#measureWidth">measureWidth (text)</a></td>
+	<td class="summary">measure text width</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init (fontName, text, size)</strong>
+    </dt>
+    <dd>
+    construct
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fontName</span>
+
+        </li>
+        <li><span class="parameter">text</span>
+
+        </li>
+        <li><span class="parameter">size</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onDraw"></a>
+    <strong>onDraw ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ draw self
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setText"></a>
+    <strong>setText (text)</strong>
+    </dt>
+    <dd>
+    set text
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getText"></a>
+    <strong>getText ()</strong>
+    </dt>
+    <dd>
+    get text
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+        text
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setFont"></a>
+    <strong>setFont (fontName)</strong>
+    </dt>
+    <dd>
+    set font
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fontName</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+         file path
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getFont"></a>
+    <strong>getFont ()</strong>
+    </dt>
+    <dd>
+    get font
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">font</span></span>
+        love2d font
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getFontName"></a>
+    <strong>getFontName ()</strong>
+    </dt>
+    <dd>
+    get font name
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+        font name
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setFontSize"></a>
+    <strong>setFontSize (size)</strong>
+    </dt>
+    <dd>
+    set font size
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">size</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getFontSize"></a>
+    <strong>getFontSize ()</strong>
+    </dt>
+    <dd>
+    get font size
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        font size
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setFontColor"></a>
+    <strong>setFontColor (color)</strong>
+    </dt>
+    <dd>
+    set font color
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">color</span>
+            <span class="types"><span class="type">tab</span></span>
+         {r, g, b, a}
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getFontColor"></a>
+    <strong>getFontColor ()</strong>
+    </dt>
+    <dd>
+    get font color
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">tab</span></span>
+        font color
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setLineHeight"></a>
+    <strong>setLineHeight (lineHeight)</strong>
+    </dt>
+    <dd>
+    set line height
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">lineHeight</span>
+            <span class="types"><span class="type">number</span></span>
+         line height
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getLineHeight"></a>
+    <strong>getLineHeight ()</strong>
+    </dt>
+    <dd>
+    get line height
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        line height
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setAutoSize"></a>
+    <strong>setAutoSize (autoSize)</strong>
+    </dt>
+    <dd>
+    set is auto size
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">autoSize</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isAutoSize"></a>
+    <strong>isAutoSize ()</strong>
+    </dt>
+    <dd>
+    get is auto size
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        is auto size
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "textTest"></a>
+    <strong>textTest ()</strong>
+    </dt>
+    <dd>
+    test text
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getDrawable"></a>
+    <strong>getDrawable ()</strong>
+    </dt>
+    <dd>
+    get drawable
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        drawable
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getWrap"></a>
+    <strong>getWrap ()</strong>
+    </dt>
+    <dd>
+    get a wrap array
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">tab</span></span>
+        wrap string array
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "measureWidth"></a>
+    <strong>measureWidth (text)</strong>
+    </dt>
+    <dd>
+    measure text width
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        width
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,3 +1,32 @@
+--[[
+The MIT License (MIT)
+
+Copyright (c) 2016 WilhanTian  田伟汉
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]--
+
+-------------------------------------
+-- UICheckBox
+-- @usage
+-- local checkBox = UICheckBox:new()
+-------------------------------------
 local UICheckBox = UIControl:extend("UICheckBox", {
     upColor = nil,
     downColor = nil,
@@ -10,6 +39,9 @@ local UICheckBox = UIControl:extend("UICheckBox", {
     selected = false,
 })
 
+-------------------------------------
+-- construct
+-------------------------------------
 function UICheckBox:init()
     UIControl.init(self)
     self:initTheme()
@@ -17,13 +49,16 @@ function UICheckBox:init()
 
     self.events:on(UI_DRAW, self.onDraw, self)
     self.events:on(UI_MOUSE_ENTER, self.onMouseEnter, self)
-    self.events:on(UI_MOUSE_LEAVE, self.onMouseLevel, self)
+    self.events:on(UI_MOUSE_LEAVE, self.onMouseLeave, self)
     self.events:on(UI_MOUSE_DOWN, self.onMouseDown, self)
     self.events:on(UI_MOUSE_UP, self.onMouseUp, self)
     self.events:on(UI_CLICK, self.onClick, self)
 end
 
---- 初始化主题
+-------------------------------------
+-- init Theme Style
+-- @tab _theme
+-------------------------------------
 function UICheckBox:initTheme(_theme)
     local theme = theme or _theme
     self.upColor = theme.checkBox.upColor
@@ -35,7 +70,10 @@ function UICheckBox:initTheme(_theme)
     self:setSize(self.size, self.size)
 end
 
---- 绘制
+-------------------------------------
+-- (callback)
+-- draw self
+-------------------------------------
 function UICheckBox:onDraw()
     local box = self:getBoundingBox()
     local x, y = box.left, box.top
@@ -52,45 +90,67 @@ function UICheckBox:onDraw()
 
     love.graphics.setColor(color[1], color[2], color[3], color[4])
     love.graphics.setLineWidth(1)
-    love.graphics.rectangle("line", x, y, self.size, self.size)
     if self.selected then
-        love.graphics.line(x, y, x+self.size, y+self.size, x+self.size, y, x, y+self.size)
+        love.graphics.rectangle("fill", x, y, self.size, self.size)
+    else
+        love.graphics.rectangle("line", x, y, self.size, self.size)
     end
     love.graphics.setColor(r, g, b, a)
 end
 
---- 鼠标进入
+-------------------------------------
+-- (callback)
+-- on mouse enter
+-------------------------------------
 function UICheckBox:onMouseEnter()
     self.isHoved = true
 end
 
---- 鼠标离开
-function UICheckBox:onMouseLevel()
+-------------------------------------
+-- (callback)
+-- on mouse leave
+-------------------------------------
+function UICheckBox:onMouseLeave()
     self.isHoved = false
 end
 
---- 鼠标按下
+-------------------------------------
+-- (callback)
+-- on mouse down
+-------------------------------------
 function UICheckBox:onMouseDown(x, y)
     self.isPressed = true
 end
 
---- 鼠标抬起
+-------------------------------------
+-- (callback)
+-- on mouse up
+-------------------------------------
 function UICheckBox:onMouseUp(x, y)
     self.isPressed = false
 end
 
---- 点击
+-------------------------------------
+-- (callback)
+-- on click
+-------------------------------------
 function UICheckBox:onClick()
     self:setSelected(not self.selected)
     self.events:dispatch(UI_ON_SELECT, self.selected)
 end
 
---- 设置选中
+-------------------------------------
+-- set selected
+-- @bool selected
+-------------------------------------
 function UICheckBox:setSelected(selected)
     self.selected = selected
 end
 
---- 获取选中状态
+-------------------------------------
+-- is selected
+-- @treturn bool is selected
+-------------------------------------
 function UICheckBox:isSelected()
     return self.selected
 end

@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><strong>catui.Control.UICheckBox</strong></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Control.UICheckBox</code></h1>
+<p>UICheckBox</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local checkBox = UICheckBox:new()
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#initTheme">initTheme (_theme)</a></td>
+	<td class="summary">init Theme Style</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDraw">onDraw ()</a></td>
+	<td class="summary">(callback)
+ draw self</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMouseEnter">onMouseEnter ()</a></td>
+	<td class="summary">(callback)
+ on mouse enter</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMouseLeave">onMouseLeave ()</a></td>
+	<td class="summary">(callback)
+ on mouse leave</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMouseDown">onMouseDown (x, y)</a></td>
+	<td class="summary">(callback)
+ on mouse down</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMouseUp">onMouseUp (x, y)</a></td>
+	<td class="summary">(callback)
+ on mouse up</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onClick">onClick ()</a></td>
+	<td class="summary">(callback)
+ on click</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setSelected">setSelected (selected)</a></td>
+	<td class="summary">set selected</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isSelected">isSelected ()</a></td>
+	<td class="summary">is selected</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    construct
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "initTheme"></a>
+    <strong>initTheme (_theme)</strong>
+    </dt>
+    <dd>
+    init Theme Style
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_theme</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onDraw"></a>
+    <strong>onDraw ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ draw self
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onMouseEnter"></a>
+    <strong>onMouseEnter ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse enter
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onMouseLeave"></a>
+    <strong>onMouseLeave ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse leave
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onMouseDown"></a>
+    <strong>onMouseDown (x, y)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse down
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onMouseUp"></a>
+    <strong>onMouseUp (x, y)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse up
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onClick"></a>
+    <strong>onClick ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on click
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setSelected"></a>
+    <strong>setSelected (selected)</strong>
+    </dt>
+    <dd>
+    set selected
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selected</span>
+            <span class="types"><span class="type">bool</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isSelected"></a>
+    <strong>isSelected ()</strong>
+    </dt>
+    <dd>
+    is selected
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        is selected
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

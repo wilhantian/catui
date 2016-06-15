@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><strong>catui.Control.UIProgressBar</strong></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Control.UIProgressBar</code></h1>
+<p>UIProgressBar</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ rogressBar = UIProgressBar:new()
+ progressBar:setSize(100, 10)
+ progressBar:setValue(40)
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#initTheme">initTheme (_theme)</a></td>
+	<td class="summary">init Theme Style</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDraw">onDraw ()</a></td>
+	<td class="summary">(callback)
+ draw self</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setValue">setValue (value)</a></td>
+	<td class="summary">set value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getValue">getValue ()</a></td>
+	<td class="summary">get value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setMinValue">setMinValue (value)</a></td>
+	<td class="summary">set min value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getMinValue">getMinValue ()</a></td>
+	<td class="summary">get min value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setMaxValue">setMaxValue (value)</a></td>
+	<td class="summary">set max value</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getMaxValue">getMaxValue ()</a></td>
+	<td class="summary">get max value</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    construct
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "initTheme"></a>
+    <strong>initTheme (_theme)</strong>
+    </dt>
+    <dd>
+    init Theme Style
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_theme</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onDraw"></a>
+    <strong>onDraw ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ draw self
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setValue"></a>
+    <strong>setValue (value)</strong>
+    </dt>
+    <dd>
+    set value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getValue"></a>
+    <strong>getValue ()</strong>
+    </dt>
+    <dd>
+    get value
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setMinValue"></a>
+    <strong>setMinValue (value)</strong>
+    </dt>
+    <dd>
+    set min value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getMinValue"></a>
+    <strong>getMinValue ()</strong>
+    </dt>
+    <dd>
+    get min value
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        min value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setMaxValue"></a>
+    <strong>setMaxValue (value)</strong>
+    </dt>
+    <dd>
+    set max value
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getMaxValue"></a>
+    <strong>getMaxValue ()</strong>
+    </dt>
+    <dd>
+    get max value
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        max value
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

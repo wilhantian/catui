@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><strong>catui.Control.UIEditText</strong></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Control.UIEditText</code></h1>
+<p>UIEditText</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local editText = UIEditText:new()
+ editText:setSize(120, 50)
+ editText:setText(&quot;input&quot;)
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init (fontName, text, size)</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#initTheme">initTheme (_theme)</a></td>
+	<td class="summary">init Theme Style</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUpdate">onUpdate (dt)</a></td>
+	<td class="summary">(callback)
+ update</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDraw">onDraw ()</a></td>
+	<td class="summary">(callback)
+ draw self</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setSize">setSize (width, height)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setWidth">setWidth (width)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setHeight">setHeight (height)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onKeyDown">onKeyDown (key, scancode, isrepeat)</a></td>
+	<td class="summary">(callback)
+ on key down</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#textInput">textInput (text)</a></td>
+	<td class="summary">(callback)
+ on text input</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMouseEnter">onMouseEnter ()</a></td>
+	<td class="summary">(callback)
+ on mouse enter</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMouseLeave">onMouseLeave ()</a></td>
+	<td class="summary">(callback)
+ on mouse leave</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFocus">onFocus ()</a></td>
+	<td class="summary">(callback)
+ on focus</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUnFocus">onUnFocus ()</a></td>
+	<td class="summary">(callback)
+ on unfocus</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setText">setText (text)</a></td>
+	<td class="summary">set text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getText">getText ()</a></td>
+	<td class="summary">get text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#drawCursor">drawCursor ()</a></td>
+	<td class="summary">draw cursor</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setMoreLine">setMoreLine (moreLine)</a></td>
+	<td class="summary">set more line input type</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getMoreLine">getMoreLine (moreLine)</a></td>
+	<td class="summary">get more line input type</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setFontColor">setFontColor (color)</a></td>
+	<td class="summary">set font color</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getFontColor">getFontColor ()</a></td>
+	<td class="summary">get font color</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init (fontName, text, size)</strong>
+    </dt>
+    <dd>
+    construct
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fontName</span>
+
+        </li>
+        <li><span class="parameter">text</span>
+
+        </li>
+        <li><span class="parameter">size</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "initTheme"></a>
+    <strong>initTheme (_theme)</strong>
+    </dt>
+    <dd>
+    init Theme Style
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_theme</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onUpdate"></a>
+    <strong>onUpdate (dt)</strong>
+    </dt>
+    <dd>
+    (callback)
+ update
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onDraw"></a>
+    <strong>onDraw ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ draw self
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setSize"></a>
+    <strong>setSize (width, height)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+
+        </li>
+        <li><span class="parameter">height</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setWidth"></a>
+    <strong>setWidth (width)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setHeight"></a>
+    <strong>setHeight (height)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">height</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onKeyDown"></a>
+    <strong>onKeyDown (key, scancode, isrepeat)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on key down
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+
+        </li>
+        <li><span class="parameter">scancode</span>
+
+        </li>
+        <li><span class="parameter">isrepeat</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "textInput"></a>
+    <strong>textInput (text)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on text input
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onMouseEnter"></a>
+    <strong>onMouseEnter ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse enter
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onMouseLeave"></a>
+    <strong>onMouseLeave ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse leave
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onFocus"></a>
+    <strong>onFocus ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on focus
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onUnFocus"></a>
+    <strong>onUnFocus ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ on unfocus
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setText"></a>
+    <strong>setText (text)</strong>
+    </dt>
+    <dd>
+    set text
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getText"></a>
+    <strong>getText ()</strong>
+    </dt>
+    <dd>
+    get text
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+        text
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "drawCursor"></a>
+    <strong>drawCursor ()</strong>
+    </dt>
+    <dd>
+    draw cursor
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setMoreLine"></a>
+    <strong>setMoreLine (moreLine)</strong>
+    </dt>
+    <dd>
+    set more line input type
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">moreLine</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getMoreLine"></a>
+    <strong>getMoreLine (moreLine)</strong>
+    </dt>
+    <dd>
+    get more line input type
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">moreLine</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        is more line
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setFontColor"></a>
+    <strong>setFontColor (color)</strong>
+    </dt>
+    <dd>
+    set font color
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">color</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getFontColor"></a>
+    <strong>getFontColor ()</strong>
+    </dt>
+    <dd>
+    get font color
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">tab</span></span>
+        font color
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

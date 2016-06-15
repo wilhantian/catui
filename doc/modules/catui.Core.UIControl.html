@@ -1,0 +1,1189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><strong>catui.Core.UIControl</strong></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Core.UIControl</code></h1>
+<p>UIControl</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local control = UIControl:new()
+
+ -- enable control
+ control:setEnabled(true)
+
+ -- draw
+ control.events:on(UI_DRAW, function()
+     local box = self:getBoundingBox()
+     local x, y = box.left, box.top
+     local w, h = box:getWidth(), box:getHeight()
+     love.graphics.rectangle(x, y, w, h)
+ end, control)
+
+ -- on control click
+ control.events:on(UI_CLICK, function()
+     print(&quot;the control is click&quot;)
+ end)
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#update">update (dt)</a></td>
+	<td class="summary">love2d update callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#draw">draw ()</a></td>
+	<td class="summary">love2d draw callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setClip">setClip (isClip)</a></td>
+	<td class="summary">set control is enable clipping</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isClip">isClip ()</a></td>
+	<td class="summary">get control is enable clipping</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#clipBegin">clipBegin ()</a></td>
+	<td class="summary">clipping begin</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#clipEnd">clipEnd ()</a></td>
+	<td class="summary">clipping end</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#needValidate">needValidate ()</a></td>
+	<td class="summary">need validate layout</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#validate">validate ()</a></td>
+	<td class="summary">validate layout</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setAnchor">setAnchor (x, y)</a></td>
+	<td class="summary">set anchor point</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getAnchor">getAnchor ()</a></td>
+	<td class="summary">get anchor point</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setAnchorX">setAnchorX (x)</a></td>
+	<td class="summary">set anchor point x</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getAnchorX">getAnchorX ()</a></td>
+	<td class="summary">get anchor point x</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setAnchorY">setAnchorY (x)</a></td>
+	<td class="summary">set anchor point y</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getAnchorY">getAnchorY (y)</a></td>
+	<td class="summary">get anchor point y</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setPos">setPos (x, y)</a></td>
+	<td class="summary">set position</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getPos">getPos ()</a></td>
+	<td class="summary">get position</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setX">setX (x)</a></td>
+	<td class="summary">set position x</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getX">getX ()</a></td>
+	<td class="summary">get position x</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setY">setY (y)</a></td>
+	<td class="summary">set position y</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getY">getY ()</a></td>
+	<td class="summary">get position y</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setSize">setSize (width, height)</a></td>
+	<td class="summary">set size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getSize">getSize ()</a></td>
+	<td class="summary">get size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setWidth">setWidth (width)</a></td>
+	<td class="summary">set width</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getWidth">getWidth ()</a></td>
+	<td class="summary">get width</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setHeight">setHeight (height)</a></td>
+	<td class="summary">set height</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getHeight">getHeight ()</a></td>
+	<td class="summary">get height</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getBoundingBox">getBoundingBox ()</a></td>
+	<td class="summary">get bounding box</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setParent">setParent (UIControl)</a></td>
+	<td class="summary">set parent control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getParent">getParent ()</a></td>
+	<td class="summary">get parent control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setEnabled">setEnabled (enabled)</a></td>
+	<td class="summary">set control enable status</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isEnabled">isEnabled ()</a></td>
+	<td class="summary">get control enable status</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setChildrenEnabled">setChildrenEnabled (enabled)</a></td>
+	<td class="summary">set children control enable status</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isChildrenEnabled">isChildrenEnabled ()</a></td>
+	<td class="summary">get children control enable status</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#hitTest">hitTest (x, y)</a></td>
+	<td class="summary">hit test</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#localToGlobal">localToGlobal (x, y)</a></td>
+	<td class="summary">local position to world position</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#globalToLocal">globalToLocal (x, y)</a></td>
+	<td class="summary">world position to local position</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setDepth">setDepth (depth)</a></td>
+	<td class="summary">set control depth</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getDepth">getDepth ()</a></td>
+	<td class="summary">get control depth</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#addChild">addChild (child, depth)</a></td>
+	<td class="summary">add a child control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#removeChild">removeChild (child)</a></td>
+	<td class="summary">remove a child control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sortChildren">sortChildren ()</a></td>
+	<td class="summary">sort children</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getChildren">getChildren ()</a></td>
+	<td class="summary">get all child</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setFocus">setFocus ()</a></td>
+	<td class="summary">set control is focus</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    construct
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "update"></a>
+    <strong>update (dt)</strong>
+    </dt>
+    <dd>
+    love2d update callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "draw"></a>
+    <strong>draw ()</strong>
+    </dt>
+    <dd>
+    love2d draw callback
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setClip"></a>
+    <strong>setClip (isClip)</strong>
+    </dt>
+    <dd>
+    set control is enable clipping
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">isClip</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isClip"></a>
+    <strong>isClip ()</strong>
+    </dt>
+    <dd>
+    get control is enable clipping
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "clipBegin"></a>
+    <strong>clipBegin ()</strong>
+    </dt>
+    <dd>
+    clipping begin
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "clipEnd"></a>
+    <strong>clipEnd ()</strong>
+    </dt>
+    <dd>
+    clipping end
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "needValidate"></a>
+    <strong>needValidate ()</strong>
+    </dt>
+    <dd>
+    need validate layout
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "validate"></a>
+    <strong>validate ()</strong>
+    </dt>
+    <dd>
+    validate layout
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setAnchor"></a>
+    <strong>setAnchor (x, y)</strong>
+    </dt>
+    <dd>
+    set anchor point
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getAnchor"></a>
+    <strong>getAnchor ()</strong>
+    </dt>
+    <dd>
+    get anchor point
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        x</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        y</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setAnchorX"></a>
+    <strong>setAnchorX (x)</strong>
+    </dt>
+    <dd>
+    set anchor point x
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getAnchorX"></a>
+    <strong>getAnchorX ()</strong>
+    </dt>
+    <dd>
+    get anchor point x
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        x
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setAnchorY"></a>
+    <strong>setAnchorY (x)</strong>
+    </dt>
+    <dd>
+    set anchor point y
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getAnchorY"></a>
+    <strong>getAnchorY (y)</strong>
+    </dt>
+    <dd>
+    get anchor point y
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setPos"></a>
+    <strong>setPos (x, y)</strong>
+    </dt>
+    <dd>
+    set position
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getPos"></a>
+    <strong>getPos ()</strong>
+    </dt>
+    <dd>
+    get position
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        x</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        y</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setX"></a>
+    <strong>setX (x)</strong>
+    </dt>
+    <dd>
+    set position x
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getX"></a>
+    <strong>getX ()</strong>
+    </dt>
+    <dd>
+    get position x
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        x
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setY"></a>
+    <strong>setY (y)</strong>
+    </dt>
+    <dd>
+    set position y
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getY"></a>
+    <strong>getY ()</strong>
+    </dt>
+    <dd>
+    get position y
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        y
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setSize"></a>
+    <strong>setSize (width, height)</strong>
+    </dt>
+    <dd>
+    set size
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">height</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getSize"></a>
+    <strong>getSize ()</strong>
+    </dt>
+    <dd>
+    get size
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        width</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        height</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setWidth"></a>
+    <strong>setWidth (width)</strong>
+    </dt>
+    <dd>
+    set width
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getWidth"></a>
+    <strong>getWidth ()</strong>
+    </dt>
+    <dd>
+    get width
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        width
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setHeight"></a>
+    <strong>setHeight (height)</strong>
+    </dt>
+    <dd>
+    set height
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">height</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getHeight"></a>
+    <strong>getHeight ()</strong>
+    </dt>
+    <dd>
+    get height
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        height
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getBoundingBox"></a>
+    <strong>getBoundingBox ()</strong>
+    </dt>
+    <dd>
+    get bounding box
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">Rect</span></span>
+        bounding box
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setParent"></a>
+    <strong>setParent (UIControl)</strong>
+    </dt>
+    <dd>
+    set parent control
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">UIControl</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getParent"></a>
+    <strong>getParent ()</strong>
+    </dt>
+    <dd>
+    get parent control
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">UIControl</span></span>
+        parent
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setEnabled"></a>
+    <strong>setEnabled (enabled)</strong>
+    </dt>
+    <dd>
+    set control enable status
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">enabled</span>
+            <span class="types"><span class="type">bool</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isEnabled"></a>
+    <strong>isEnabled ()</strong>
+    </dt>
+    <dd>
+    get control enable status
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        status
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setChildrenEnabled"></a>
+    <strong>setChildrenEnabled (enabled)</strong>
+    </dt>
+    <dd>
+    set children control enable status
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">enabled</span>
+            <span class="types"><span class="type">bool</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "isChildrenEnabled"></a>
+    <strong>isChildrenEnabled ()</strong>
+    </dt>
+    <dd>
+    get children control enable status
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        enabled
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "hitTest"></a>
+    <strong>hitTest (x, y)</strong>
+    </dt>
+    <dd>
+    hit test
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">UIControl</span></span>
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "localToGlobal"></a>
+    <strong>localToGlobal (x, y)</strong>
+    </dt>
+    <dd>
+    local position to world position
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        world x</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        world y</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "globalToLocal"></a>
+    <strong>globalToLocal (x, y)</strong>
+    </dt>
+    <dd>
+    world position to local position
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        local x</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        local y</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setDepth"></a>
+    <strong>setDepth (depth)</strong>
+    </dt>
+    <dd>
+    set control depth
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">depth</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getDepth"></a>
+    <strong>getDepth ()</strong>
+    </dt>
+    <dd>
+    get control depth
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        depth
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "addChild"></a>
+    <strong>addChild (child, depth)</strong>
+    </dt>
+    <dd>
+    add a child control
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">child</span>
+
+        </li>
+        <li><span class="parameter">depth</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "removeChild"></a>
+    <strong>removeChild (child)</strong>
+    </dt>
+    <dd>
+    remove a child control
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">child</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "sortChildren"></a>
+    <strong>sortChildren ()</strong>
+    </dt>
+    <dd>
+    sort children
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getChildren"></a>
+    <strong>getChildren ()</strong>
+    </dt>
+    <dd>
+    get all child
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">tab</span></span>
+        child control table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setFocus"></a>
+    <strong>setFocus ()</strong>
+    </dt>
+    <dd>
+    set control is focus
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

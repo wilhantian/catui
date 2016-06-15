@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><strong>catui.Control.UIScrollBar</strong></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Control.UIScrollBar</code></h1>
+<p>UIScrollBar</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local bar = UIScrollBar:new()
+ bar:setSize(100, 20)
+ bar:setDir(&quot;vertical&quot;)
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDraw">onDraw ()</a></td>
+	<td class="summary">(callback)
+ draw self</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#initTheme">initTheme (_theme)</a></td>
+	<td class="summary">init Theme Style</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setDir">setDir (dir)</a></td>
+	<td class="summary">set bar scroll direction</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getDir">getDir ()</a></td>
+	<td class="summary">get bar scroll direction</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBarDown">onBarDown (x, y)</a></td>
+	<td class="summary">(callback)
+ on bar down</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBarMove">onBarMove (x, y, dx, dy)</a></td>
+	<td class="summary">(callback)
+ on bar move</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBarUp">onBarUp (x, y)</a></td>
+	<td class="summary">(callback)
+ on bar up</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBgDown">onBgDown (x, y)</a></td>
+	<td class="summary">(callback)
+ on bar down</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setSize">setSize (width, height)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setWidth">setWidth (width)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setHeight">setHeight (height)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setUpColor">setUpColor (color)</a></td>
+	<td class="summary">set bar up color</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setDownColor">setDownColor (color)</a></td>
+	<td class="summary">set bar down color</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setHoverColor">setHoverColor (color)</a></td>
+	<td class="summary">set bar hover color</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setRatio">setRatio (ratio)</a></td>
+	<td class="summary">set bar position with ratio</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reset">reset ()</a></td>
+	<td class="summary">reset contorl</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setBarPos">setBarPos (ratio)</a></td>
+	<td class="summary">set bar position with ratio</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getBarPos">getBarPos ()</a></td>
+	<td class="summary">get bar position with ratio</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    construct
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onDraw"></a>
+    <strong>onDraw ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ draw self
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "initTheme"></a>
+    <strong>initTheme (_theme)</strong>
+    </dt>
+    <dd>
+    init Theme Style
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_theme</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setDir"></a>
+    <strong>setDir (dir)</strong>
+    </dt>
+    <dd>
+    set bar scroll direction
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dir</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+         "vertical" or "horizontal", default is vertical
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getDir"></a>
+    <strong>getDir ()</strong>
+    </dt>
+    <dd>
+    get bar scroll direction
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+        direction
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onBarDown"></a>
+    <strong>onBarDown (x, y)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on bar down
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onBarMove"></a>
+    <strong>onBarMove (x, y, dx, dy)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on bar move
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+        <li><span class="parameter">dx</span>
+
+        </li>
+        <li><span class="parameter">dy</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onBarUp"></a>
+    <strong>onBarUp (x, y)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on bar up
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onBgDown"></a>
+    <strong>onBgDown (x, y)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on bar down
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setSize"></a>
+    <strong>setSize (width, height)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+
+        </li>
+        <li><span class="parameter">height</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setWidth"></a>
+    <strong>setWidth (width)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setHeight"></a>
+    <strong>setHeight (height)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">height</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setUpColor"></a>
+    <strong>setUpColor (color)</strong>
+    </dt>
+    <dd>
+    set bar up color
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">color</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setDownColor"></a>
+    <strong>setDownColor (color)</strong>
+    </dt>
+    <dd>
+    set bar down color
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">color</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setHoverColor"></a>
+    <strong>setHoverColor (color)</strong>
+    </dt>
+    <dd>
+    set bar hover color
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">color</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setRatio"></a>
+    <strong>setRatio (ratio)</strong>
+    </dt>
+    <dd>
+    set bar position with ratio
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ratio</span>
+            <span class="types"><span class="type">number</span></span>
+         value: 0-1
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "reset"></a>
+    <strong>reset ()</strong>
+    </dt>
+    <dd>
+    reset contorl
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setBarPos"></a>
+    <strong>setBarPos (ratio)</strong>
+    </dt>
+    <dd>
+    set bar position with ratio
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ratio</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getBarPos"></a>
+    <strong>getBarPos ()</strong>
+    </dt>
+    <dd>
+    get bar position with ratio
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        ratio
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -22,4 +22,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
 
-class = require "libs.30log"
+utf8 = require "utf8"
+class = require "catui.libs.30log"
+
+require "catui.Core.UIDefine"
+
+theme = require "catui.UITheme"
+
+point = require "catui.Utils.Utils"
+Rect = require "catui.Core.Rect"
+UIEvent = require "catui.Core.UIEvent"
+UIControl = require "catui.Core.UIControl"
+UIRoot = require "catui.Core.UIRoot"
+UIManager = require "catui.Core.UIManager"
+UILabel = require "catui.Control.UILabel"
+UIButton = require "catui.Control.UIButton"
+UIImage = require "catui.Control.UIImage"
+UIScrollBar = require "catui.Control.UIScrollBar"
+UIContent = require "catui.Control.UIContent"
+UICheckBox = require "catui.Control.UICheckBox"
+UIProgressBar = require "catui.Control.UIProgressBar"
+UIEditText = require "catui.Control.UIEditText"

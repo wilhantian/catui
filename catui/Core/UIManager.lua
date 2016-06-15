@@ -1,15 +1,36 @@
----------------------------------------
--- 为控件派发消息
----------------------------------------
+--[[
+The MIT License (MIT)
+
+Copyright (c) 2016 WilhanTian  田伟汉
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]--
+
 local function dispatch(ctrl, name, ...)
     ctrl.events:dispatch(name, ...)
 end
 
 ---------------------------------------
--- UI管理器
+-- UIManager
 ---------------------------------------
 local UIManager = class("UIManager", {
-    rootCtrl = nil, --根节点
+    rootCtrl = nil,
     hoverCtrl = nil,
     focusCtrl = nil,
     holdCtrl = nil,
@@ -19,7 +40,8 @@ local UIManager = class("UIManager", {
 })
 
 ---------------------------------------
--- 获取单利
+-- get a UIManager instance
+-- @return UIManager
 ---------------------------------------
 function UIManager:getInstance()
     if not UIManager.instance then
@@ -28,17 +50,18 @@ function UIManager:getInstance()
     return UIManager.instance
 end
 
----------------------------------------
--- 构造
----------------------------------------
+-------------------------------------
+-- construct
+-------------------------------------
 function UIManager:init()
     -- TODO 此处由用户设置
     self.rootCtrl = self:createRootCtrl()
 end
 
----------------------------------------
--- 创建一个Root控件
----------------------------------------
+-------------------------------------
+-- create root control
+-- @return UIControl
+-------------------------------------
 function UIManager:createRootCtrl()
     local ctrl = UIRoot:new()
     self.rootCtrl = ctrl
@@ -46,7 +69,15 @@ function UIManager:createRootCtrl()
 end
 
 ---------------------------------------
--- UI更新
+-- get root control
+---------------------------------------
+function UIManager:getRootCtrl()
+    return self.rootCtrl
+end
+
+---------------------------------------
+-- love2d update callback
+-- @number dt
 ---------------------------------------
 function UIManager:update(dt)
     if self.rootCtrl then
@@ -55,23 +86,22 @@ function UIManager:update(dt)
 end
 
 ---------------------------------------
--- 渲染
+-- love2d draw callback
 ---------------------------------------
-function UIManager:draw(dt)
+function UIManager:draw()
     if self.rootCtrl then
-        self.rootCtrl:draw(dt)
+        self.rootCtrl:draw()
     end
 end
 
 ---------------------------------------
--- 鼠标移动
+-- love2d mouse move callback
 ---------------------------------------
 function UIManager:mouseMove(x, y, dx, dy)
     if not self.rootCtrl then
         return
     end
 
-    -- 尝试探测鼠标进入与离开事件
     local hitCtrl = self.rootCtrl:hitTest(x, y)
     if hitCtrl ~= self.hoverCtrl then
         if self.hoverCtrl then
@@ -85,11 +115,9 @@ function UIManager:mouseMove(x, y, dx, dy)
         end
     end
 
-    -- 派发锁定控件的移动事件
     if self.holdCtrl then
         dispatch(self.holdCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
     else
-        -- 派发悬浮控件的移动事件
         if self.hoverCtrl then
             dispatch(self.hoverCtrl, UI_MOUSE_MOVE, x, y, dx, dy)
         end
@@ -97,25 +125,24 @@ function UIManager:mouseMove(x, y, dx, dy)
 end
 
 ---------------------------------------
--- 鼠标按下
+-- love2d mouse down callback
 ---------------------------------------
 function UIManager:mouseDown(x, y, button, isTouch)
     if not self.rootCtrl then
         return
     end
 
-    -- 鼠标点击
     local hitCtrl = self.rootCtrl:hitTest(x, y)
     if hitCtrl then
         dispatch(hitCtrl, UI_MOUSE_DOWN, x, y, button, isTouch)
-        self.holdCtrl = hitCtrl --设置按下控件
+        self.holdCtrl = hitCtrl
     end
 
     self:setFocus(hitCtrl)
 end
 
 ---------------------------------------
--- 设置抬起
+-- love2d mouse up callback
 ---------------------------------------
 function UIManager:mouseUp(x, y, button, isTouch)
     if self.holdCtrl then
@@ -147,8 +174,10 @@ function UIManager:mouseUp(x, y, button, isTouch)
     end
 end
 
+---------------------------------------
+-- love2d whell move callback
+---------------------------------------
 function UIManager:whellMove(x, y)
-    -- 给所有在鼠标上的控件派发 顺序从高层想底层
     local hitCtrl = self.rootCtrl:hitTest(love.mouse.getX(), love.mouse.getY())
     while hitCtrl do
         self:mouseMove(love.mouse.getX(), love.mouse.getY(), 0, 0)
@@ -160,33 +189,35 @@ function UIManager:whellMove(x, y)
 end
 
 ---------------------------------------
--- 键盘按下事件
+-- love2d key down callback
 ---------------------------------------
 function UIManager:keyDown(key, scancode, isrepeat)
-    -- 只给发送给当前焦点控件
     if self.focusCtrl then
         dispatch(self.focusCtrl, UI_KEY_DOWN, key, scancode, isrepeat)
     end
 end
 
 ---------------------------------------
--- 键盘抬起事件
+-- love2d key up callback
 ---------------------------------------
 function UIManager:keyUp(key)
-    -- 只给发送给当前焦点控件
     if self.focusCtrl then
         dispatch(self.focusCtrl, UI_KEY_UP, key)
     end
 end
 
 ---------------------------------------
--- 窗口重置大小
+-- love2d text input callback
 ---------------------------------------
-function UIManager:resize(w, h)
+function UIManager:textInput(text)
+    if self.focusCtrl then
+        dispatch(self.focusCtrl, UI_TEXT_INPUT, text)
+    end
 end
 
 ---------------------------------------
--- 设置焦点
+-- set focus control
+-- @param control
 ---------------------------------------
 function UIManager:setFocus(ctrl)
     if self.focusCtrl == ctrl then

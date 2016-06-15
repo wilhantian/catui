@@ -1,3 +1,34 @@
+--[[
+The MIT License (MIT)
+
+Copyright (c) 2016 WilhanTian  田伟汉
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]--
+
+-------------------------------------
+-- UIScrollBar
+-- @usage
+-- local bar = UIScrollBar:new()
+-- bar:setSize(100, 20)
+-- bar:setDir("vertical")
+-------------------------------------
 local UIScrollBar = UIControl:extend("UIScrollBar", {
     upColor = nil,
     downColor = nil,
@@ -11,7 +42,9 @@ local UIScrollBar = UIControl:extend("UIScrollBar", {
     barPosRatio = 0,
 })
 
---- 构造
+-------------------------------------
+-- construct
+-------------------------------------
 function UIScrollBar:init()
     UIControl.init(self)
 
@@ -28,7 +61,10 @@ function UIScrollBar:init()
     self.events:on(UI_MOUSE_DOWN, self.onBgDown, self)
 end
 
---- 绘制
+-------------------------------------
+-- (callback)
+-- draw self
+-------------------------------------
 function UIScrollBar:onDraw()
     local box = self:getBoundingBox()
     local x, y = box.left, box.top
@@ -41,7 +77,10 @@ function UIScrollBar:onDraw()
     love.graphics.setColor(r, g, b, a)
 end
 
---- 初始化主题
+-------------------------------------
+-- init Theme Style
+-- @tab _theme
+-------------------------------------
 function UIScrollBar:initTheme(_theme)
     local theme = theme or _theme
     self.upColor = theme.scrollBar.upColor
@@ -55,23 +94,35 @@ function UIScrollBar:initTheme(_theme)
     self.bar:setHoverColor(self.hoverColor)
 end
 
---- 设置方向
+-------------------------------------
+-- set bar scroll direction
+-- @string dir "vertical" or "horizontal", default is vertical
+-------------------------------------
 function UIScrollBar:setDir(dir)
     self.dir = dir
     self:reset()
 end
 
---- 获取方向
+-------------------------------------
+-- get bar scroll direction
+-- @treturn string direction
+-------------------------------------
 function UIScrollBar:getDir()
     return self.dir
 end
 
---- bar按下时
+-------------------------------------
+-- (callback)
+-- on bar down
+-------------------------------------
 function UIScrollBar:onBarDown(x, y)
     self.barDown = true
 end
 
---- bar按移动时
+-------------------------------------
+-- (callback)
+-- on bar move
+-------------------------------------
 function UIScrollBar:onBarMove(x, y, dx, dy)
     if not self.barDown then return end
 
@@ -98,12 +149,18 @@ function UIScrollBar:onBarMove(x, y, dx, dy)
     self:setBarPos(self.barPosRatio)
 end
 
---- bar抬起时
+-------------------------------------
+-- (callback)
+-- on bar up
+-------------------------------------
 function UIScrollBar:onBarUp(x, y)
     self.barDown = false
 end
 
---- 背景按下时
+-------------------------------------
+-- (callback)
+-- on bar down
+-------------------------------------
 function UIScrollBar:onBgDown(x, y)
     x, y = self:globalToLocal(x, y)
 
@@ -114,48 +171,66 @@ function UIScrollBar:onBgDown(x, y)
     end
 end
 
---- 复写setSize
+-------------------------------------
+-- (override)
+-------------------------------------
 function UIScrollBar:setSize(width, height)
     UIControl.setSize(self, width, height)
     self:reset()
 end
 
---- 复写setWidth
+-------------------------------------
+-- (override)
+-------------------------------------
 function UIScrollBar:setWidth(width)
     UIControl.setWidth(self, width)
     self:reset()
 end
 
---- 复写setHeight
+-------------------------------------
+-- (override)
+-------------------------------------
 function UIScrollBar:setHeight(height)
     UIControl.setHeight(self, height)
     self:reset()
 end
 
---- 设置抬起颜色
+-------------------------------------
+-- set bar up color
+-- @tab color
+-------------------------------------
 function UIScrollBar:setUpColor(color)
     self.upColor = color
 end
 
---- 设置按下颜色
+-------------------------------------
+-- set bar down color
+-- @tab color
+-------------------------------------
 function UIScrollBar:setDownColor(color)
     self.downColor = color
 end
 
---- 设置悬浮颜色
+-------------------------------------
+-- set bar hover color
+-- @tab color
+-------------------------------------
 function UIScrollBar:setHoverColor(color)
     self.hoverColor = color
 end
 
---- 设置比例
--- 比例越大 滑动块越小
--- 不能小于1
+-------------------------------------
+-- set bar position with ratio
+-- @number ratio value: 0-1
+-------------------------------------
 function UIScrollBar:setRatio(ratio)
     self.ratio = ratio < 1 and 1 or ratio
     self:reset()
 end
 
---- 刷新滚动块大小
+-------------------------------------
+-- reset contorl
+-------------------------------------
 function UIScrollBar:reset()
     local ratio = self.ratio
     if self.dir == "vertical" then
@@ -168,8 +243,10 @@ function UIScrollBar:reset()
     self:setBarPos(self.barPosRatio)
 end
 
---- 设置滑块位置
--- 单位: 比例
+-------------------------------------
+-- set bar position with ratio
+-- @number ratio
+-------------------------------------
 function UIScrollBar:setBarPos(ratio)
     if ratio < 0 then ratio = 0 end
     if ratio > 1 then ratio = 1 end
@@ -186,7 +263,10 @@ function UIScrollBar:setBarPos(ratio)
     self.events:dispatch(UI_ON_SCROLL, ratio)
 end
 
---- 获取滑块位置
+-------------------------------------
+-- get bar position with ratio
+-- @treturn number ratio
+-------------------------------------
 function UIScrollBar:getBarPos()
     return self.barPosRatio
 end

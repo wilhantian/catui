@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><strong>catui.Control.UIContent</strong></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><a href="../modules/catui.Core.UIManager.html">catui.Core.UIManager</a></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Control.UIContent</code></h1>
+<p>UIContent
+ A scroll container, default with two scrollbar</p>
+<p></p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local content = UIContent:new()
+ content:setSize(100, 100) -- set frame size
+ content:setContentSize(450, 450) -- set content size
+</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#initTheme">initTheme (_theme)</a></td>
+	<td class="summary">init Theme Style</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDraw">onDraw ()</a></td>
+	<td class="summary">(callback)
+ draw self</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onWhellMove">onWhellMove (x, y)</a></td>
+	<td class="summary">(callback)
+ on mouse whell move</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onVBarScroll">onVBarScroll (ratio)</a></td>
+	<td class="summary">(callback)
+ on vertical scroll</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onHBarScroll">onHBarScroll (ratio)</a></td>
+	<td class="summary">(callback)
+ on horizontal scroll</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setSize">setSize (width, height)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setWidth">setWidth (width)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setHeight">setHeight (height)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getContent">getContent ()</a></td>
+	<td class="summary">get content control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setContentSize">setContentSize (width, height)</a></td>
+	<td class="summary">set content size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getContentSize">getContentSize ()</a></td>
+	<td class="summary">get content size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getContentWidth">getContentWidth ()</a></td>
+	<td class="summary">get content width</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getContentHeight">getContentHeight ()</a></td>
+	<td class="summary">get content height</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setContentOffsetPos">setContentOffsetPos (x, y)</a></td>
+	<td class="summary">set content offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setContentOffsetX">setContentOffsetX (x)</a></td>
+	<td class="summary">set content x offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setContentOffsetY">setContentOffsetY (y)</a></td>
+	<td class="summary">set content y offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#addChild">addChild (child, depth)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#removeChild">removeChild (child)</a></td>
+	<td class="summary">(override)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#UIControl:resetBar">UIControl:resetBar ()</a></td>
+	<td class="summary">reset bar size & position</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    construct
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "initTheme"></a>
+    <strong>initTheme (_theme)</strong>
+    </dt>
+    <dd>
+    init Theme Style
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">_theme</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onDraw"></a>
+    <strong>onDraw ()</strong>
+    </dt>
+    <dd>
+    (callback)
+ draw self
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onWhellMove"></a>
+    <strong>onWhellMove (x, y)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on mouse whell move
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onVBarScroll"></a>
+    <strong>onVBarScroll (ratio)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on vertical scroll
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ratio</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "onHBarScroll"></a>
+    <strong>onHBarScroll (ratio)</strong>
+    </dt>
+    <dd>
+    (callback)
+ on horizontal scroll
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ratio</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setSize"></a>
+    <strong>setSize (width, height)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+
+        </li>
+        <li><span class="parameter">height</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setWidth"></a>
+    <strong>setWidth (width)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setHeight"></a>
+    <strong>setHeight (height)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">height</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getContent"></a>
+    <strong>getContent ()</strong>
+    </dt>
+    <dd>
+    get content control
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">UIControl</span></span>
+        content control
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setContentSize"></a>
+    <strong>setContentSize (width, height)</strong>
+    </dt>
+    <dd>
+    set content size
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">height</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getContentSize"></a>
+    <strong>getContentSize ()</strong>
+    </dt>
+    <dd>
+    get content size
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        width</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        height</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getContentWidth"></a>
+    <strong>getContentWidth ()</strong>
+    </dt>
+    <dd>
+    get content width
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        width
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getContentHeight"></a>
+    <strong>getContentHeight ()</strong>
+    </dt>
+    <dd>
+    get content height
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        height
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setContentOffsetPos"></a>
+    <strong>setContentOffsetPos (x, y)</strong>
+    </dt>
+    <dd>
+    set content offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setContentOffsetX"></a>
+    <strong>setContentOffsetX (x)</strong>
+    </dt>
+    <dd>
+    set content x offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setContentOffsetY"></a>
+    <strong>setContentOffsetY (y)</strong>
+    </dt>
+    <dd>
+    set content y offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "addChild"></a>
+    <strong>addChild (child, depth)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">child</span>
+
+        </li>
+        <li><span class="parameter">depth</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "removeChild"></a>
+    <strong>removeChild (child)</strong>
+    </dt>
+    <dd>
+    (override)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">child</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "UIControl:resetBar"></a>
+    <strong>UIControl:resetBar ()</strong>
+    </dt>
+    <dd>
+    reset bar size & position
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

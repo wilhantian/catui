@@ -1,3 +1,32 @@
+--[[
+The MIT License (MIT)
+
+Copyright (c) 2016 WilhanTian  田伟汉
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]--
+
+-------------------------------------
+-- UIButton
+-- @usage
+-- local button = UIButton:new()
+-------------------------------------
 local UIButton = UIControl:extend("UIButton", {
     isHoved = false,
     isPressed = false,
@@ -17,7 +46,9 @@ local UIButton = UIControl:extend("UIButton", {
     iconAndTextSpace = 6
 })
 
---- 构造
+-------------------------------------
+-- construct
+-------------------------------------
 function UIButton:init()
     UIControl.init(self)
     self:initTheme()
@@ -25,12 +56,15 @@ function UIButton:init()
 
     self.events:on(UI_DRAW, self.onDraw, self)
     self.events:on(UI_MOUSE_ENTER, self.onMouseEnter, self)
-    self.events:on(UI_MOUSE_LEAVE, self.onMouseLevel, self)
+    self.events:on(UI_MOUSE_LEAVE, self.onMouseLeave, self)
     self.events:on(UI_MOUSE_DOWN, self.onMouseDown, self)
     self.events:on(UI_MOUSE_UP, self.onMouseUp, self)
 end
 
---- 初始化主题
+-------------------------------------
+-- init Theme Style
+-- @tab _theme
+-------------------------------------
 function UIButton:initTheme(_theme)
     local theme = theme or _theme
     self.width = theme.button.width
@@ -48,7 +82,10 @@ function UIButton:initTheme(_theme)
     self.iconAndTextSpace = theme.button.iconAndTextSpace
 end
 
---- 绘制
+-------------------------------------
+-- (callback)
+-- draw self
+-------------------------------------
 function UIButton:onDraw()
     local box = self:getBoundingBox()
     local x, y = box.left, box.top
@@ -116,70 +153,111 @@ function UIButton:onDraw()
     love.graphics.setColor(r, g, b, a)
 end
 
---- 鼠标进入
+-------------------------------------
+-- (callback)
+-- on mouse enter
+-------------------------------------
 function UIButton:onMouseEnter()
     self.isHoved = true
-    love.mouse.setCursor(love.mouse.getSystemCursor("hand"))
+    if love.mouse.getSystemCursor("hand") then
+        love.mouse.setCursor(love.mouse.getSystemCursor("hand"))
+    end
 end
 
---- 鼠标离开
-function UIButton:onMouseLevel()
+-------------------------------------
+-- (callback)
+-- on mouse level
+-------------------------------------
+function UIButton:onMouseLeave()
     self.isHoved = false
     love.mouse.setCursor()
 end
 
---- 鼠标按下
+-------------------------------------
+-- (callback)
+-- on mouse down
+-------------------------------------
 function UIButton:onMouseDown(x, y)
     self.isPressed = true
 end
 
---- 鼠标抬起
+-------------------------------------
+-- (callback)
+-- on mouse up
+-------------------------------------
 function UIButton:onMouseUp(x, y)
     self.isPressed = false
 end
 
---- 设置Icon
+-------------------------------------
+-- set icon image
+-- @string icon image path
+-------------------------------------
 function UIButton:setIcon(icon)
     self.iconImg = love.graphics.newImage(icon)
 end
 
---- 设置Icon方向
+-------------------------------------
+-- set icon direction
+-- @string dir "left" or "right", default is left
+-------------------------------------
 function UIButton:setIconDir(dir)
     self.iconDir = dir
 end
 
---- 设置文字
+-------------------------------------
+-- set button label text
+-- @string text
+-------------------------------------
 function UIButton:setText(text)
     self.text = text
     self.textDrawable:set(text)
 end
 
---- 设置抬起颜色
+-------------------------------------
+-- set button up color
+-- @tab color color = {r, g, b, a}
+-------------------------------------
 function UIButton:setUpColor(color)
     self.upColor = color
 end
 
---- 设置按下颜色
+-------------------------------------
+-- set button down color
+-- @tab color color = {r, g, b, a}
+-------------------------------------
 function UIButton:setDownColor(color)
     self.downColor = color
 end
 
---- 设置悬浮颜色
+-------------------------------------
+-- set button hover color
+-- @tab color color = {r, g, b, a}
+-------------------------------------
 function UIButton:setHoverColor(color)
     self.hoverColor = color
 end
 
---- 设置禁用颜色
+-------------------------------------
+-- set button disable color
+-- @tab color color = {r, g, b, a}
+-------------------------------------
 function UIButton:setDisableColor(color)
     self.disableColor = color
 end
 
---- 设置描边
+-------------------------------------
+-- set button stroke width
+-- @number stroke
+-------------------------------------
 function UIButton:setStroke(stroke)
     self.stroke = stroke
 end
 
---- 设置描边颜色
+-------------------------------------
+-- set button stroke color
+-- @tab color color = {r, g, b, a}
+-------------------------------------
 function UIButton:setStrokeColor(color)
     self.strokeColor = color
 end

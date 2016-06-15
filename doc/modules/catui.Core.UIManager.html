@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>a little GUILib</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>catui</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/catui.Control.UIButton.html">catui.Control.UIButton</a></li>
+  <li><a href="../modules/catui.Control.UICheckBox.html">catui.Control.UICheckBox</a></li>
+  <li><a href="../modules/catui.Control.UIContent.html">catui.Control.UIContent</a></li>
+  <li><a href="../modules/catui.Control.UIEditText.html">catui.Control.UIEditText</a></li>
+  <li><a href="../modules/catui.Control.UIImage.html">catui.Control.UIImage</a></li>
+  <li><a href="../modules/catui.Control.UILabel.html">catui.Control.UILabel</a></li>
+  <li><a href="../modules/catui.Control.UIProgressBar.html">catui.Control.UIProgressBar</a></li>
+  <li><a href="../modules/catui.Control.UIScrollBar.html">catui.Control.UIScrollBar</a></li>
+  <li><a href="../modules/catui.Core.Rect.html">catui.Core.Rect</a></li>
+  <li><a href="../modules/catui.Core.UIControl.html">catui.Core.UIControl</a></li>
+  <li><a href="../modules/catui.Core.UIEvent.html">catui.Core.UIEvent</a></li>
+  <li><strong>catui.Core.UIManager</strong></li>
+  <li><a href="../modules/catui.Core.UIRoot.html">catui.Core.UIRoot</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>catui.Core.UIManager</code></h1>
+<p>UIManager</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#getInstance">getInstance ()</a></td>
+	<td class="summary">get a UIManager instance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#init">init ()</a></td>
+	<td class="summary">construct</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#createRootCtrl">createRootCtrl ()</a></td>
+	<td class="summary">create root control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getRootCtrl">getRootCtrl ()</a></td>
+	<td class="summary">get root control</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#update">update (dt)</a></td>
+	<td class="summary">love2d update callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#draw">draw ()</a></td>
+	<td class="summary">love2d draw callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mouseMove">mouseMove (x, y, dx, dy)</a></td>
+	<td class="summary">love2d mouse move callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mouseDown">mouseDown (x, y, button, isTouch)</a></td>
+	<td class="summary">love2d mouse down callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mouseUp">mouseUp (x, y, button, isTouch)</a></td>
+	<td class="summary">love2d mouse up callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#whellMove">whellMove (x, y)</a></td>
+	<td class="summary">love2d whell move callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#keyDown">keyDown (key, scancode, isrepeat)</a></td>
+	<td class="summary">love2d key down callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#keyUp">keyUp (key)</a></td>
+	<td class="summary">love2d key up callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#textInput">textInput (text)</a></td>
+	<td class="summary">love2d text input callback</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setFocus">setFocus (control)</a></td>
+	<td class="summary">set focus control</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "getInstance"></a>
+    <strong>getInstance ()</strong>
+    </dt>
+    <dd>
+    get a UIManager instance
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        UIManager
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "init"></a>
+    <strong>init ()</strong>
+    </dt>
+    <dd>
+    construct
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "createRootCtrl"></a>
+    <strong>createRootCtrl ()</strong>
+    </dt>
+    <dd>
+    create root control
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        UIControl
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getRootCtrl"></a>
+    <strong>getRootCtrl ()</strong>
+    </dt>
+    <dd>
+    get root control
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "update"></a>
+    <strong>update (dt)</strong>
+    </dt>
+    <dd>
+    love2d update callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "draw"></a>
+    <strong>draw ()</strong>
+    </dt>
+    <dd>
+    love2d draw callback
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mouseMove"></a>
+    <strong>mouseMove (x, y, dx, dy)</strong>
+    </dt>
+    <dd>
+    love2d mouse move callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+        <li><span class="parameter">dx</span>
+
+        </li>
+        <li><span class="parameter">dy</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mouseDown"></a>
+    <strong>mouseDown (x, y, button, isTouch)</strong>
+    </dt>
+    <dd>
+    love2d mouse down callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+        <li><span class="parameter">button</span>
+
+        </li>
+        <li><span class="parameter">isTouch</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mouseUp"></a>
+    <strong>mouseUp (x, y, button, isTouch)</strong>
+    </dt>
+    <dd>
+    love2d mouse up callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+        <li><span class="parameter">button</span>
+
+        </li>
+        <li><span class="parameter">isTouch</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "whellMove"></a>
+    <strong>whellMove (x, y)</strong>
+    </dt>
+    <dd>
+    love2d whell move callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+        </li>
+        <li><span class="parameter">y</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "keyDown"></a>
+    <strong>keyDown (key, scancode, isrepeat)</strong>
+    </dt>
+    <dd>
+    love2d key down callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+
+        </li>
+        <li><span class="parameter">scancode</span>
+
+        </li>
+        <li><span class="parameter">isrepeat</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "keyUp"></a>
+    <strong>keyUp (key)</strong>
+    </dt>
+    <dd>
+    love2d key up callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "textInput"></a>
+    <strong>textInput (text)</strong>
+    </dt>
+    <dd>
+    love2d text input callback
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setFocus"></a>
+    <strong>setFocus (control)</strong>
+    </dt>
+    <dd>
+    set focus control
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">control</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-06-15 11:05:45 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

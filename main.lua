@@ -1,24 +1,4 @@
-class = require "catui.libs.30log"
-tween = require "catui.libs.tween"
-
-require "catui.Core.UIDefine"
-
-theme = require "catui.UITheme"
-
-point = require "catui.Utils.Utils"
-Rect = require "catui.Core.Rect"
-UIEvent = require "catui.Core.UIEvent"
-UIControl = require "catui.Core.UIControl"
-UIRoot = require "catui.Core.UIRoot"
-UIManager = require "catui.Core.UIManager"
-UILabel = require "catui.Control.UILabel"
-UIButton = require "catui.Control.UIButton"
-UIImage = require "catui.Control.UIImage"
-UIScrollBar = require "catui.Control.UIScrollBar"
-UIContent = require "catui.Control.UIContent"
-UICheckBox = require "catui.Control.UICheckBox"
-UIProgressBar = require "catui.Control.UIProgressBar"
-UIEditText = require "catui.Control.UIEditText"
+require "catui"
 
 function love.load(arg)
     love.graphics.setBackgroundColor(35, 42, 50, 255)
@@ -36,7 +16,6 @@ function love.load(arg)
     childA:setText("登陆")
     childA:setIcon("img/icon_haha.png", "left")
     childA:setAnchor(0, 0)
-    -- childA:setSize(100, 40)
     content:addChild(childA)
 
     local img = UIImage:new("img/gem.png")
@@ -63,23 +42,8 @@ function love.load(arg)
     local editText = UIEditText:new()
     editText:setPos(100, 120)
     editText:setSize(120, 50)
+    editText:setText("你好!")
     content:addChild(editText)
-
-    --------------------------------------
-    childA.events:on(UI_FOCUS, function()
-        label:setText(label:getWidth() .. " " .. label:getHeight())
-    end)
-    --------------------------------------
-    childA.events:on(UI_UN_FOCUS, function()
-    end)
-    --------------------------------------
-    childA.events:on(UI_MOUSE_MOVE, function(x, y, dx, dy)
-    end)
-    --------------------------------------
-    childA.events:on(UI_DB_CLICK, function(ctrl, x, y)
-        label:setText("啊哈哈哈哈啊哈哈哈哈啊哈哈哈")
-    end)
-    --------------------------------------
 end
 
 function love.update(dt)
@@ -114,19 +78,6 @@ function love.wheelmoved(x, y)
     mgr:whellMove(x, y)
 end
 
-function love.resize(w, h)
-    mgr:resize(w, h)
-end
-
---- 当在输入法编辑器中输入时调用
-function love.textedited( text, start, length )
-    -- print(text .. "  start:" .. start .. " length" .. length)
-end
-
---- 当成功输入时
 function love.textinput(text)
-    -- print(text)
+    mgr:textInput(text)
 end
-
---- 设置输入区域
--- love.keyboard.setTextInput(true, x, y, w, h )
