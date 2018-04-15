@@ -237,7 +237,7 @@ end
 -------------------------------------
 function UILabel:getWrap()
     if self.autoSize then
-        return {self.text}
+        return csplit(self.text, '\n')
     else
         local _, t = self.font:getWrap(self.text, self:getWidth())
         return t
