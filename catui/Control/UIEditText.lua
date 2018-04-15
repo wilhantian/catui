@@ -164,6 +164,8 @@ function UIEditText:setHeight(height)
 end
 
 function UIEditText:getLineInfoAt(x, y)
+    -- returns the wrap, line, and byteoffset
+    -- of specified line
     local wraps = self.label:getWrap()
     local line = wraps[self.cursorCoords.y] or ""
     local byteoffset = utf8.offset(line, self.cursorCoords.x) or 0
@@ -175,6 +177,8 @@ function UIEditText:getLineInfo()
 end
 
 function UIEditText:wedgeLineAt(x, y, xo, yo)
+    -- return line info + both parts of line
+    -- split by the current position of cursor
     local wraps, line, byteoffset = self:getLineInfo(x, y)
     left = line:sub(1, byteoffset + xo)
     right = line:sub(byteoffset + yo, -1)
@@ -225,6 +229,8 @@ function UIEditText:insertChar(char)
 end
 
 function UIEditText:mergeLinesAt(x, y)
+    -- merge the end of a previous line with the
+    -- start of the next one
     local wraps, line, byteoffset = self:getLineInfoAt(x, y)
     local oldLine = wraps[y-1]
     local newLine = oldLine .. line
