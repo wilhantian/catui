@@ -1,7 +1,7 @@
 require "catui"
 
 function love.load(arg)
-    love.graphics.setBackgroundColor(35, 42, 50, 255)
+    love.graphics.setBackgroundColor(35/255, 42/255, 50/255, 1)
 
     mgr = UIManager:getInstance()
 
@@ -44,7 +44,7 @@ function love.load(arg)
     label:setAnchor(0, 0.5)
     label:setAutoSize(false)
     label:setPos(100, 150/2)
-    label:setFontColor({255, 255, 0, 255})
+    label:setFontColor({1, 1, 0, 1})
     img:addChild(label)
 
 
