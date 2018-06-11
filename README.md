@@ -22,7 +22,7 @@ myBtn.events:on(UI_DRAW, function()
     local box = self:getBoundingBox()
     local x, y = box.left, box.top
     local w, h = box:getWidth(), box:getHeight()
-    love.graphics.setColor(0, 255, 0, 255)
+    love.graphics.setColor(0, 1, 0, 1)
     love.graphics.rectangle(x, y, w, h)
 end, myBtn)
 
