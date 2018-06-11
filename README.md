@@ -1,6 +1,9 @@
 # catui
 A very light-weight GUI framework for the Löve2D
 
+## LOVE Version
+11.0+
+
 ## What do I want in my GUI library?
 + Simple
 + Light-weight
