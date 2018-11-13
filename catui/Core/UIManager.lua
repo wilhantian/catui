@@ -219,7 +219,7 @@ end
 -- love2d resize window callback
 ---------------------------------------
 function UIManager:resize(w, h)
-    self.rootCtrl:resize()
+    self.rootCtrl:resize(w, h)
 end
 
 ---------------------------------------
