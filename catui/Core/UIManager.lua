@@ -216,6 +216,13 @@ function UIManager:textInput(text)
 end
 
 ---------------------------------------
+-- love2d resize window callback
+---------------------------------------
+function UIManager:resize(w, h)
+    self.rootCtrl:resize()
+end
+
+---------------------------------------
 -- set focus control
 -- @param control
 ---------------------------------------
