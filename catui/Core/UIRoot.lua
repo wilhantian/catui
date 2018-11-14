@@ -61,4 +61,19 @@ function UIRoot:init()
     self:addChild(self.tipContainer, 4)
 end
 
+---------------------------------------
+-- love2d resize window callback
+---------------------------------------
+function UIRoot:resize(w, h)
+    self:setSize(w, h)
+	
+	self.coreContainer:setSize(w, h)
+	
+	self.popupContainer:setSize(w, h)
+	
+	self.optionContainer:setSize(w, h)
+	
+	self.tipContainer:setSize(w, h)
+end
+
 return UIRoot
