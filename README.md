@@ -44,8 +44,8 @@ UIManager:getInstance().rootCtrl.coreContainer:addChild(myBtn)
 ## Screenshot
 ![Screenshot](doc/screen.jpg)
 
-## License
-    [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+## License [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+    
     Copyright (c) 2019 田伟汉
 
     "Anti 996" License Version 1.0 (Draft)
