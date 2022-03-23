@@ -23,23 +23,25 @@ SOFTWARE.
 ]]--
 
 utf8 = require "utf8"
-class = require "catui.libs.30log"
+local args = {...}
+local directory = args[1]
+class = require (directory .. ".libs.30log")
 
-require "catui.Core.UIDefine"
+require (directory .. ".Core.UIDefine")
 
-theme = require "catui.UITheme"
+theme = require (directory .. ".UITheme")
 
-point = require "catui.Utils.Utils"
-Rect = require "catui.Core.Rect"
-UIEvent = require "catui.Core.UIEvent"
-UIControl = require "catui.Core.UIControl"
-UIRoot = require "catui.Core.UIRoot"
-UIManager = require "catui.Core.UIManager"
-UILabel = require "catui.Control.UILabel"
-UIButton = require "catui.Control.UIButton"
-UIImage = require "catui.Control.UIImage"
-UIScrollBar = require "catui.Control.UIScrollBar"
-UIContent = require "catui.Control.UIContent"
-UICheckBox = require "catui.Control.UICheckBox"
-UIProgressBar = require "catui.Control.UIProgressBar"
-UIEditText = require "catui.Control.UIEditText"
+point = require (directory .. ".Utils.Utils")
+Rect = require (directory .. ".Core.Rect")
+UIEvent = require (directory .. ".Core.UIEvent")
+UIControl = require (directory .. ".Core.UIControl")
+UIRoot = require (directory .. ".Core.UIRoot")
+UIManager = require (directory .. ".Core.UIManager")
+UILabel = require (directory .. ".Control.UILabel")
+UIButton = require (directory .. ".Control.UIButton")
+UIImage = require (directory .. ".Control.UIImage")
+UIScrollBar = require (directory .. ".Control.UIScrollBar")
+UIContent = require (directory .. ".Control.UIContent")
+UICheckBox = require (directory .. ".Control.UICheckBox")
+UIProgressBar = require (directory .. ".Control.UIProgressBar")
+UIEditText = require (directory .. ".Control.UIEditText")
