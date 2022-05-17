@@ -49,7 +49,7 @@ function UIContent:init()
 
     self:setClip(true)
     self:setEnabled(true)
-    self.events:on(UI_WHELL_MOVE, self.onWhellMove, self)
+    self.events:on(UI_WHEEL_MOVE, self.onWheelMove, self)
     self.events:on(UI_DRAW, self.onDraw, self)
 
     self.contentCtrl = UIControl:new()
@@ -93,9 +93,9 @@ end
 
 -------------------------------------
 -- (callback)
--- on mouse whell move
+-- on mouse wheel move
 -------------------------------------
-function UIContent:onWhellMove(x, y)
+function UIContent:onWheelMove(x, y)
     if x ~= 0 and self:getWidth() > self.contentCtrl:getWidth() then
         return false
     end
