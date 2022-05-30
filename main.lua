@@ -116,7 +116,7 @@ function love.keyreleased(key)
 end
 
 function love.wheelmoved(x, y)
-    mgr:whellMove(x, y)
+    mgr:wheelMove(x, y)
 end
 
 function love.textinput(text)

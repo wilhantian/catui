@@ -31,7 +31,7 @@ UI_MOUSE_UP = "mouseUp"
 UI_MOUSE_MOVE = "mouseMove"
 UI_MOUSE_ENTER = "mouseEnter"
 UI_MOUSE_LEAVE = "mouseLeave"
-UI_WHELL_MOVE = "whellMove"
+UI_WHEEL_MOVE = "wheelMove"
 
 UI_CLICK = "click"
 UI_DB_CLICK = "dbClick"

@@ -175,13 +175,13 @@ function UIManager:mouseUp(x, y, button, isTouch)
 end
 
 ---------------------------------------
--- love2d whell move callback
+-- love2d wheel move callback
 ---------------------------------------
-function UIManager:whellMove(x, y)
+function UIManager:wheelMove(x, y)
     local hitCtrl = self.rootCtrl:hitTest(love.mouse.getX(), love.mouse.getY())
     while hitCtrl do
         self:mouseMove(love.mouse.getX(), love.mouse.getY(), 0, 0)
-        if hitCtrl.events:dispatch(UI_WHELL_MOVE, x, y) then
+        if hitCtrl.events:dispatch(UI_WHEEL_MOVE, x, y) then
             return
         end
         hitCtrl = hitCtrl:getParent()
