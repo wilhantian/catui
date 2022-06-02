@@ -167,8 +167,8 @@ function UIEditText:getLineInfoAt(x, y)
     -- returns the wrap, line, and byteoffset
     -- of specified line
     local wraps = self.label:getWrap()
-    local line = wraps[self.cursorCoords.y] or ""
-    local byteoffset = utf8.offset(line, self.cursorCoords.x) or 0
+    local line = wraps[y] or ""
+    local byteoffset = x
     return wraps, line, byteoffset
 end
 
@@ -180,8 +180,8 @@ function UIEditText:wedgeLineAt(x, y, xo, yo)
     -- return line info + both parts of line
     -- split by the current position of cursor
     local wraps, line, byteoffset = self:getLineInfo(x, y)
-    left = line:sub(1, byteoffset + xo)
-    right = line:sub(byteoffset + yo, -1)
+    left = utf8.sub(line,1, byteoffset + xo)
+    right = utf8.sub(line,byteoffset + yo, -1)
     return wraps, line, byteoffset, left, right
 end
 
@@ -221,7 +221,7 @@ function UIEditText:insertCharAt(char, x, y)
     table.insert(wraps, y, newLine)
     self.label:setText(table.concat(wraps, '\n'))
     self.events:dispatch(UI_TEXT_CHANGE, self.label:getText())
-    self:moveCursor(#char, 0)
+    self:moveCursor(utf8.len(char), 0)
 end
 
 function UIEditText:insertChar(char)
@@ -296,7 +296,7 @@ function UIEditText:onKeyDown(key, scancode, isrepeat)
             self:moveCursor(#(wraps[self.cursorCoords.y-1] or {}), -1)
         end
     elseif key == "right" then
-        if self.cursorCoords.x < #line then
+        if self.cursorCoords.x < utf8.len(line) then
             self:moveCursor(1, 0)
         elseif self.cursorCoords.y < self.rows then
             self:moveCursor(-self.cursorCoords.x, 1)
@@ -378,7 +378,7 @@ function UIEditText:moveCursor(xo, yo)
     self.cursorCoords.y = self.cursorCoords.y + yo
     if xo == 0 then
       local wraps = self.label:getWrap()
-      local width = #wraps[self.cursorCoords.y]
+      local width = utf8.len(wraps[self.cursorCoords.y])
       if self.cursorCoords.x > width then
         self.cursorCoords.x = width
       end
@@ -397,7 +397,7 @@ function UIEditText:drawCursor()
 
     local wraps = self.label:getWrap()
     local length = #wraps == 0 and 1 or #wraps
-    local chars = (wraps[self.cursorCoords.y] or ""):sub(
+    local chars = utf8.sub((wraps[self.cursorCoords.y] or ""),
       1, self.cursorCoords.x
     )
     local width = self.label:measureWidth(chars)
